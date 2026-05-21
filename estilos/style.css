@@ -1,0 +1,1046 @@
+/* ============================================================
+   TIM · Larga Distancia — Hoja de estilos principal
+   Terminal Inteligente de Mendoza · Nexo Studio 2026
+   ============================================================ */
+
+/* ── Variables de color ──────────────────────────────────── */
+:root {
+  --tim:        #722F37;
+  --tim-dark:   #5A2229;
+  --tim-light:  #F5EAEB;
+  --tim-text:   #333333;
+  --tim-muted:  #666666;
+  --tim-subtle: #888888;
+  --tim-border: #DDDDDD;
+  --tim-bgalt:  #F7F7F7;
+  --white:      #FFFFFF;
+}
+
+/* ── Reset y base ────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--tim-text);
+  background-color: var(--white);
+  min-width: 1280px;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Dígitos de ancho fijo (precios, horarios) */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Foco accesible */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--tim);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Layout ──────────────────────────────────────────────── */
+.container-tim {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 80px;
+}
+
+/* ── Botones ─────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--tim);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 24px;
+  min-height: 44px;
+  transition: background-color 0.15s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--tim-dark);
+}
+
+.btn-ghost-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 14px;
+  border: 1.5px solid var(--white);
+  border-radius: 8px;
+  padding: 13px 24px;
+  min-height: 44px;
+  transition: background-color 0.15s ease;
+}
+
+.btn-ghost-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Tarjetas ────────────────────────────────────────────── */
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--tim-border);
+  border-radius: 12px;
+}
+
+/* ── Pastilla de ícono ───────────────────────────────────── */
+.icon-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--tim-light);
+  color: var(--tim);
+  border-radius: 8px;
+}
+
+/* ── Tabs de destino ─────────────────────────────────────── */
+.tab {
+  background-color: var(--white);
+  border: 1px solid var(--tim-border);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 44px;
+  transition: background-color 0.15s ease;
+  color: var(--tim-text);
+}
+
+.tab:hover {
+  background-color: rgba(245, 234, 235, 0.4);
+}
+
+.tab-active {
+  background-color: var(--tim);
+  border-color: var(--tim);
+  color: var(--white);
+}
+
+.tab-active:hover {
+  background-color: var(--tim-dark);
+}
+
+/* ── Tipografía de secciones ─────────────────────────────── */
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tim);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.section-title {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--tim-text);
+  margin: 0;
+}
+
+.section-sub {
+  font-size: 17px;
+  color: var(--tim-muted);
+  margin-top: 14px;
+  max-width: 640px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ── Navbar ──────────────────────────────────────────────── */
+.navbar {
+  background-color: var(--tim);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  height: 76px;
+  gap: 40px;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.navbar__logo-name {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.navbar__logo-sub {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.navbar__nav {
+  display: flex;
+  gap: 28px;
+  margin-left: 24px;
+}
+
+.navbar__link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: opacity 0.15s;
+}
+
+.navbar__link:hover {
+  opacity: 1;
+}
+
+.navbar__link--active {
+  border-bottom-color: var(--white);
+}
+
+.navbar__link--inactive {
+  opacity: 0.8;
+}
+
+.navbar__cta {
+  margin-left: auto;
+}
+
+/* ── Hero ────────────────────────────────────────────────── */
+.hero {
+  background-color: var(--tim);
+  color: var(--white);
+  padding-top: 64px;
+  padding-bottom: 88px;
+}
+
+.hero__breadcrumb {
+  font-size: 13px;
+  opacity: 0.75;
+  margin-bottom: 28px;
+}
+
+.hero__breadcrumb a {
+  color: var(--white);
+  opacity: 0.9;
+}
+
+.hero__breadcrumb a:hover {
+  opacity: 1;
+}
+
+.hero__breadcrumb-sep {
+  margin-inline: 10px;
+  opacity: 0.5;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  padding: 6px 14px 6px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.hero__badge-icon {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__h1 {
+  font-size: 72px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  margin: 0 0 24px;
+}
+
+.hero__desc {
+  font-size: 20px;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 580px;
+  margin: 0;
+}
+
+/* Stats del hero */
+.hero__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 12px;
+}
+
+.hero__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero__stat-num {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  min-width: 90px;
+}
+
+.hero__stat-label {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.hero__stat-sub {
+  font-size: 13px;
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+/* Buscador */
+.search-bar {
+  background-color: var(--white);
+  color: var(--tim-text);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.search-bar__field {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+}
+
+.search-bar__field--wide { flex: 2; }
+
+.search-bar__label {
+  display: block;
+  font-size: 10px;
+  color: var(--tim-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.search-bar__input,
+.search-bar__select {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tim-text);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.search-bar__divider {
+  width: 1px;
+  background-color: var(--tim-border);
+  align-self: stretch;
+  margin-block: 4px;
+}
+
+/* ── Sección Destinos ────────────────────────────────────── */
+.destinos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.destino-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.destino-card--featured {
+  background-color: var(--tim-light);
+  border-color: var(--tim);
+  box-shadow: 0 8px 32px rgba(114, 47, 55, 0.08);
+}
+
+.destino-card__badge {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 0 0 4px 4px;
+  letter-spacing: 0.08em;
+}
+
+.destino-card__badge--featured {
+  background-color: var(--tim);
+  color: var(--white);
+}
+
+.destino-card__badge--intl {
+  background-color: var(--tim-text);
+  color: var(--white);
+}
+
+.destino-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.destino-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.destino-card__city {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.destino-card__state {
+  font-size: 13px;
+  color: var(--tim-subtle);
+  margin-top: 2px;
+}
+
+.destino-card__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.destino-card__stat-label {
+  font-size: 11px;
+  color: var(--tim-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.destino-card__stat-value {
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.destino-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--tim-border);
+}
+
+.destino-card--featured .destino-card__footer {
+  border-color: rgba(114, 47, 55, 0.2);
+}
+
+.destino-card__desde {
+  font-size: 11px;
+  color: var(--tim-subtle);
+}
+
+.destino-card__price {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tim);
+}
+
+.destino-card__freq {
+  font-size: 12px;
+  color: var(--tim-subtle);
+}
+
+.destino-card__link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tim);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  transition: color 0.15s;
+}
+
+.destino-card__link:hover {
+  color: var(--tim-dark);
+}
+
+/* ── Sección Horarios ────────────────────────────────────── */
+.tabla-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--tim-border);
+  background: var(--white);
+}
+
+.tabla-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tabla-wrap thead tr {
+  background-color: var(--tim-bgalt);
+  border-bottom: 1px solid var(--tim-border);
+  text-align: left;
+}
+
+.tabla-wrap thead th {
+  padding: 16px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tim-subtle);
+}
+
+.tabla-wrap tbody tr {
+  border-top: 1px solid var(--tim-border);
+}
+
+.tabla-wrap tbody tr:first-child {
+  border-top: none;
+}
+
+.tabla-wrap tbody td {
+  padding: 18px 14px;
+  vertical-align: middle;
+}
+
+.plat-badge {
+  display: inline-block;
+  background-color: var(--tim-light);
+  color: var(--tim);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.status-ok {
+  display: inline-block;
+  background-color: #e8f5e9;
+  color: #1b5e20;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-warn {
+  display: inline-block;
+  background-color: #fff3e0;
+  color: #e65100;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.amenities {
+  display: inline-flex;
+  gap: 6px;
+  color: var(--tim);
+}
+
+/* ── Mapa ────────────────────────────────────────────────── */
+.mapa-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.mapa-svg-wrap {
+  background-color: #FBFAF7;
+  border: 1px solid var(--tim-border);
+  border-radius: 12px;
+  position: relative;
+  min-height: 500px;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.mapa-svg-wrap svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mapa-leyenda {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: var(--white);
+  border: 1px solid var(--tim-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.mapa-leyenda__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--tim-muted);
+}
+
+.mapa-leyenda__line {
+  width: 20px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.mapa-leyenda__line--solid   { background-color: var(--tim); }
+.mapa-leyenda__line--dashed  { background-image: repeating-linear-gradient(90deg, #555 0 4px, transparent 4px 8px); }
+
+.mapa-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ubicacion-card {
+  background-color: var(--tim-light);
+  border: 1px solid rgba(114, 47, 55, 0.2);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.ubicacion-card__address {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.ubicacion-card__sub {
+  font-size: 15px;
+  color: var(--tim-muted);
+  line-height: 1.5;
+}
+
+.ubicacion-card__tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.ubicacion-card__tag {
+  background: var(--white);
+  border: 1px solid var(--tim-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.horarios-card {
+  flex: 1;
+  padding: 28px;
+}
+
+.horarios-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.horarios-card__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.horarios-card__key   { color: var(--tim-muted); }
+.horarios-card__val   { font-weight: 600; }
+
+.horarios-card__tel {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--tim-border);
+  font-size: 13px;
+  color: var(--tim-muted);
+}
+
+/* ── Empresas ────────────────────────────────────────────── */
+.empresas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.empresa-card {
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.empresa-card__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  background-color: var(--tim);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.empresa-card__name {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.empresa-card__dest {
+  font-size: 12px;
+  color: var(--tim-muted);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.empresa-card__plat {
+  display: inline-block;
+  background-color: var(--tim-light);
+  color: var(--tim);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ── Accesibilidad ───────────────────────────────────────── */
+.acces-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.acces-card {
+  background-color: var(--tim-bgalt);
+  border: 1px solid var(--tim-border);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.acces-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--white);
+  border: 1px solid var(--tim-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tim);
+}
+
+.acces-card__title {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.acces-card__desc {
+  font-size: 14px;
+  color: var(--tim-muted);
+  line-height: 1.6;
+}
+
+.acces-card__norma {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--tim-border);
+  font-size: 11px;
+  color: var(--tim);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.acces-cta {
+  margin-top: 40px;
+  padding: 24px 32px;
+  background-color: var(--tim);
+  color: var(--white);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.acces-cta__eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+
+.acces-cta__title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.acces-cta__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--white);
+  color: var(--tim);
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 24px;
+  min-height: 44px;
+  transition: background-color 0.15s;
+  cursor: pointer;
+}
+
+.btn-white:hover {
+  background-color: var(--tim-light);
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footer {
+  background-color: var(--tim-text);
+  color: var(--white);
+  padding-top: 64px;
+  padding-bottom: 32px;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__brand-name {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.footer__brand-sub {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 6px;
+}
+
+.footer__address {
+  font-size: 14px;
+  font-style: normal;
+  opacity: 0.85;
+  margin-top: 20px;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.footer__address .muted {
+  opacity: 0.6;
+}
+
+.footer__col-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer__links a {
+  font-size: 14px;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+
+.footer__links a:hover {
+  opacity: 1;
+}
+
+.footer__links a.active {
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  font-size: 13px;
+  opacity: 0.65;
+}
+
+/* ── Secciones: espaciado ────────────────────────────────── */
+.section-bg-white  { background-color: var(--white);      padding-block: 96px; }
+.section-bg-alt    { background-color: var(--tim-bgalt);   padding-block: 96px; }
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.section-header--simple {
+  margin-bottom: 48px;
+}
+
+.section-header__link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tim);
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.section-header__link:hover {
+  color: var(--tim-dark);
+}
+
+/* ── Leyenda de tabla ────────────────────────────────────── */
+.tabla-leyenda {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tabla-leyenda__items {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+  color: var(--tim-muted);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tabla-leyenda__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--tim-muted);
+}
+
+.tabla-leyenda__item svg {
+  color: var(--tim);
+}
+
+.tabla-leyenda__timestamp {
+  font-size: 13px;
+  color: var(--tim-subtle);
+  font-family: monospace;
+}

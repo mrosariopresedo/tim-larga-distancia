@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TIM · Larga Distancia</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          tim: {
+            DEFAULT: '#722F37',
+            dark:    '#5A2229',
+            light:   '#F5EAEB',
+            text:    '#333333',
+            muted:   '#666666',
+            subtle:  '#888888',
+            border:  '#DDDDDD',
+            bgalt:   '#F7F7F7',
+          },
+        },
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        maxWidth:   { container: '1280px' },
+      },
+    },
+  };
+</script>
+
+<link rel="stylesheet" href="estilos/style.css" />
+</head>
+<body>
+
+<!-- SVG SPRITE ─────────────────────────────────────────────────────────────── -->
+<svg width="0" height="0" class="absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-bus"       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="12" rx="2"/><circle cx="8" cy="19" r="1.5"/><circle cx="16" cy="19" r="1.5"/><path d="M4 11h16M9 5v6"/></symbol>
+    <symbol id="i-pin"       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-cal"       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-search"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"   stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></symbol>
+    <symbol id="i-arrow"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-wifi"      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a10 10 0 0114 0M8 15a6 6 0 018 0M11 18h2"/></symbol>
+    <symbol id="i-plug"      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v5M15 3v5M7 8h10v4a5 5 0 01-10 0z M12 17v4"/></symbol>
+    <symbol id="i-ac"        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4 7l16 10M4 17L20 7"/></symbol>
+    <symbol id="i-bed"       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V8M21 18v-5a3 3 0 00-3-3H10v8M3 14h18"/></symbol>
+    <symbol id="i-wheelchair" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="5" r="1.8"/><path d="M9 7v6h6l2 5M5 14a6 6 0 109 5"/><circle cx="11" cy="18" r="3.5"/></symbol>
+    <symbol id="i-ramp"      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19h18M3 19l16-12"/><circle cx="16" cy="9" r="1.5"/><path d="M19 7l-4 5"/></symbol>
+    <symbol id="i-audio"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15 9a4 4 0 010 6M18 6a8 8 0 010 12"/></symbol>
+    <symbol id="i-eye"       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-signs"     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><rect x="3" y="5" width="14" height="5" rx="1"/><rect x="7" y="13" width="14" height="5" rx="1"/></symbol>
+    <symbol id="i-toilet"    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><circle cx="7" cy="6" r="2"/><path d="M5 21v-6H4l1.5-5a2 2 0 014 0L11 15h-1v6z"/><circle cx="17" cy="6" r="2"/><path d="M14 21v-4h-1l2-6h4l2 6h-1v4z"/></symbol>
+  </defs>
+</svg>
+
+
+<!-- ══════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════ -->
+<header class="bg-tim text-white sticky top-0 z-50 shadow-md">
+  <div class="container-tim flex items-center h-[76px] gap-10">
+    <a href="index.html" class="flex items-baseline gap-3 no-underline text-white">
+      <span class="font-extrabold text-[28px] tracking-tight">TIM</span>
+      <span class="text-xs opacity-75">Terminal Inteligente de Mendoza</span>
+    </a>
+    <nav class="flex gap-7 ml-6 text-sm font-semibold">
+      <a href="#" class="border-b-2 border-white pb-0.5">Larga Distancia</a>
+      <a href="#" class="border-b-2 border-transparent pb-0.5 opacity-80 hover:opacity-100 transition-opacity">Alta Montaña</a>
+      <a href="#" class="border-b-2 border-transparent pb-0.5 opacity-80 hover:opacity-100 transition-opacity">Ruta del Vino</a>
+      <a href="#" class="border-b-2 border-transparent pb-0.5 opacity-80 hover:opacity-100 transition-opacity">Aeropuerto</a>
+      <a href="#" class="border-b-2 border-transparent pb-0.5 opacity-80 hover:opacity-100 transition-opacity">Universitario</a>
+    </nav>
+    <button class="btn-ghost-light ml-auto text-sm">Accesibilidad</button>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════ -->
+<section class="bg-tim text-white pt-16 pb-[88px]">
+  <div class="container-tim">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="text-[13px] opacity-75 mb-7">
+      <a href="index.html" class="text-white opacity-90 hover:opacity-100">Inicio</a>
+      <span class="mx-2.5 opacity-50">›</span>
+      <a href="#" class="text-white opacity-90 hover:opacity-100">Servicios</a>
+      <span class="mx-2.5 opacity-50">›</span>
+      <span class="font-medium">Larga Distancia</span>
+    </nav>
+
+    <div class="grid grid-cols-[1.4fr_1fr] gap-20 items-end">
+
+      <!-- Left: título + badge -->
+      <div>
+        <span class="inline-flex items-center gap-2.5 bg-white/10 rounded-full pl-2.5 pr-3.5 py-1.5 text-[13px] font-medium mb-6">
+          <span class="inline-flex w-7 h-7 bg-white/15 rounded-full items-center justify-center">
+            <svg class="w-[18px] h-[18px]"><use href="#i-bus"/></svg>
+          </span>
+          Servicio Nacional e Internacional
+        </span>
+        <h1 class="text-[72px] font-extrabold tracking-[-0.03em] leading-[.98] m-0 mb-6">Larga<br>Distancia</h1>
+        <p class="text-xl leading-relaxed opacity-90 max-w-[580px] m-0">
+          Micros desde TIM hacia <strong class="font-semibold">Buenos Aires, Córdoba, Rosario</strong> y todo el país.
+          Conexión internacional a Santiago de Chile, Lima y Asunción.
+        </p>
+      </div>
+
+      <!-- Right: stats -->
+      <div class="flex flex-col gap-4 pb-3">
+        <div class="flex items-baseline gap-4 pb-4 border-b border-white/20">
+          <div class="text-[40px] font-bold tracking-tight min-w-[90px] tnum">18</div>
+          <div>
+            <div class="text-[15px] font-medium">destinos nacionales</div>
+            <div class="text-[13px] opacity-60 mt-0.5">+3 internacionales</div>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-4 pb-4 border-b border-white/20">
+          <div class="text-[40px] font-bold tracking-tight min-w-[90px] tnum">12</div>
+          <div>
+            <div class="text-[15px] font-medium">empresas operadoras</div>
+            <div class="text-[13px] opacity-60 mt-0.5">Andesmar, Cata, Chevallier…</div>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-4 pb-4 border-b border-white/20">
+          <div class="text-[40px] font-bold tracking-tight min-w-[90px] tnum">+120</div>
+          <div>
+            <div class="text-[15px] font-medium">salidas diarias</div>
+            <div class="text-[13px] opacity-60 mt-0.5">24/7 — Andenes 1 al 22</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buscador -->
+    <form id="search-form" class="bg-white text-tim-text rounded-xl p-2.5 flex items-stretch gap-2 mt-12 shadow-[0_20px_50px_rgba(0,0,0,.18)]">
+      <label class="flex-[2] flex items-center gap-3 px-4 py-2.5 min-w-0 cursor-pointer">
+        <span class="icon-pill w-7 h-7 shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
+        <span class="min-w-0">
+          <span class="block text-[10px] text-tim-subtle uppercase tracking-[.08em] font-bold mb-0.5">Destino</span>
+          <input id="search-destino" class="block text-sm font-bold text-tim-text bg-transparent outline-none w-full" placeholder="Buenos Aires" />
+        </span>
+      </label>
+      <span class="w-px bg-tim-border self-stretch my-1"></span>
+      <label class="flex-1 flex items-center gap-3 px-4 py-2.5 min-w-0 cursor-pointer">
+        <span class="icon-pill w-7 h-7 shrink-0"><svg class="w-5 h-5"><use href="#i-cal"/></svg></span>
+        <span class="min-w-0">
+          <span class="block text-[10px] text-tim-subtle uppercase tracking-[.08em] font-bold mb-0.5">Fecha de viaje</span>
+          <input id="search-fecha" type="date" class="block text-sm font-bold text-tim-text bg-transparent outline-none w-full" />
+        </span>
+      </label>
+      <span class="w-px bg-tim-border self-stretch my-1"></span>
+      <label class="flex-[1.2] flex items-center gap-3 px-4 py-2.5 min-w-0 cursor-pointer">
+        <span class="icon-pill w-7 h-7 shrink-0"><svg class="w-5 h-5"><use href="#i-bus"/></svg></span>
+        <span class="min-w-0">
+          <span class="block text-[10px] text-tim-subtle uppercase tracking-[.08em] font-bold mb-0.5">Tipo de servicio</span>
+          <select id="search-tipo" class="block text-sm font-bold text-tim-text bg-transparent outline-none w-full cursor-pointer">
+            <option>Todos los servicios</option>
+            <option>Cama Suite</option>
+            <option>Cama</option>
+            <option>Semi-Cama</option>
+          </select>
+        </span>
+      </label>
+      <button type="submit" class="btn-primary px-8 flex items-center gap-2.5 text-base">
+        <svg class="w-[18px] h-[18px]"><use href="#i-search"/></svg>
+        Buscar horarios
+      </button>
+    </form>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     01 · DESTINOS
+══════════════════════════════════════════════════ -->
+<section id="destinos" class="bg-white py-24">
+  <div class="container-tim">
+
+    <div class="flex items-end justify-between gap-8 mb-12">
+      <div>
+        <div class="eyebrow">01 · Destinos</div>
+        <h2 class="section-title">Destinos principales</h2>
+        <p class="section-sub">Las ciudades más viajadas desde TIM. Los precios son referenciales y varían según empresa, categoría y antelación.</p>
+      </div>
+      <a href="#" class="text-sm font-semibold text-tim whitespace-nowrap hover:text-tim-dark">Ver los 18 destinos →</a>
+    </div>
+
+    <div class="grid grid-cols-4 gap-6">
+
+      <!-- Buenos Aires · DESTACADO -->
+      <article class="card p-6 flex flex-col gap-3.5 relative overflow-hidden border-tim bg-tim-light shadow-[0_8px_32px_rgba(114,47,55,.08)]">
+        <span class="absolute top-0 right-4 bg-tim text-white text-[10px] font-bold px-2 py-1 rounded-b">MÁS BUSCADO</span>
+        <div class="flex items-start gap-3">
+          <span class="icon-pill w-11 h-11 rounded-lg bg-white shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
+          <div>
+            <div class="text-[22px] font-bold tracking-tight">Buenos Aires</div>
+            <div class="text-[13px] text-tim-subtle mt-0.5">Buenos Aires</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-1">
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Distancia</div><div class="text-[17px] font-semibold mt-0.5 tnum">1037 km</div></div>
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Duración</div><div class="text-[17px] font-semibold mt-0.5 tnum">13h 30m</div></div>
+        </div>
+        <div class="pt-3.5 mt-1 border-t border-tim/20 flex items-center justify-between">
+          <div><div class="text-[11px] text-tim-subtle">Desde</div><div class="text-[18px] font-bold text-tim tnum">$22.500</div></div>
+          <div class="text-xs text-tim-subtle">14 salidas/día</div>
+        </div>
+        <a href="#horarios" class="text-sm font-semibold text-tim flex items-center justify-between mt-1 hover:text-tim-dark">Ver horarios <svg class="w-[18px] h-[18px]"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- Córdoba -->
+      <article class="card p-6 flex flex-col gap-3.5">
+        <div class="flex items-start gap-3">
+          <span class="icon-pill w-11 h-11 rounded-lg shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
+          <div><div class="text-[22px] font-bold tracking-tight">Córdoba</div><div class="text-[13px] text-tim-subtle mt-0.5">Córdoba</div></div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-1">
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Distancia</div><div class="text-[17px] font-semibold mt-0.5 tnum">622 km</div></div>
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Duración</div><div class="text-[17px] font-semibold mt-0.5 tnum">8h 30m</div></div>
+        </div>
+        <div class="pt-3.5 mt-1 border-t border-tim-border flex items-center justify-between">
+          <div><div class="text-[11px] text-tim-subtle">Desde</div><div class="text-[18px] font-bold text-tim tnum">$14.800</div></div>
+          <div class="text-xs text-tim-subtle">9 salidas/día</div>
+        </div>
+        <a href="#horarios" class="text-sm font-semibold text-tim flex items-center justify-between mt-1 hover:text-tim-dark">Ver horarios <svg class="w-[18px] h-[18px]"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- Rosario -->
+      <article class="card p-6 flex flex-col gap-3.5">
+        <div class="flex items-start gap-3">
+          <span class="icon-pill w-11 h-11 rounded-lg shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
+          <div><div class="text-[22px] font-bold tracking-tight">Rosario</div><div class="text-[13px] text-tim-subtle mt-0.5">Santa Fe</div></div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-1">
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Distancia</div><div class="text-[17px] font-semibold mt-0.5 tnum">866 km</div></div>
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Duración</div><div class="text-[17px] font-semibold mt-0.5 tnum">11h 00m</div></div>
+        </div>
+        <div class="pt-3.5 mt-1 border-t border-tim-border flex items-center justify-between">
+          <div><div class="text-[11px] text-tim-subtle">Desde</div><div class="text-[18px] font-bold text-tim tnum">$18.900</div></div>
+          <div class="text-xs text-tim-subtle">6 salidas/día</div>
+        </div>
+        <a href="#horarios" class="text-sm font-semibold text-tim flex items-center justify-between mt-1 hover:text-tim-dark">Ver horarios <svg class="w-[18px] h-[18px]"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- Mar del Plata -->
+      <article class="card p-6 flex flex-col gap-3.5">
+        <div class="flex items-start gap-3">
+          <span class="icon-pill w-11 h-11 rounded-lg shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
+          <div><div class="text-[22px] font-bold tracking-tight">Mar del Plata</div><div class="text-[13px] text-tim-subtle mt-0.5">Buenos Aires</div></div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-1">
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Distancia</div><div class="text-[17px] font-semibold mt-0.5 tnum">1444 km</div></div>
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Duración</div><div class="text-[17px] font-semibold mt-0.5 tnum">18h 00m</div></div>
+        </div>
+        <div class="pt-3.5 mt-1 border-t border-tim-border flex items-center justify-between">
+          <div><div class="text-[11px] text-tim-subtle">Desde</div><div class="text-[18px] font-bold text-tim tnum">$28.400</div></div>
+          <div class="text-xs text-tim-subtle">3 salidas/día</div>
+        </div>
+        <a href="#horarios" class="text-sm font-semibold text-tim flex items-center justify-between mt-1 hover:text-tim-dark">Ver horarios <svg class="w-[18px] h-[18px]"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- Bariloche -->
+      <article class="card p-6 flex flex-col gap-3.5">
+        <div class="flex items-start gap-3">
+          <span class="icon-pill w-11 h-11 rounded-lg shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
+          <div><div class="text-[22px] font-bold tracking-tight">Bariloche</div><div class="text-[13px] text-tim-subtle mt-0.5">Río Negro</div></div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-1">
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Distancia</div><div class="text-[17px] font-semibold mt-0.5 tnum">1340 km</div></div>
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Duración</div><div class="text-[17px] font-semibold mt-0.5 tnum">17h 30m</div></div>
+        </div>
+        <div class="pt-3.5 mt-1 border-t border-tim-border flex items-center justify-between">
+          <div><div class="text-[11px] text-tim-subtle">Desde</div><div class="text-[18px] font-bold text-tim tnum">$32.100</div></div>
+          <div class="text-xs text-tim-subtle">4 salidas/día</div>
+        </div>
+        <a href="#horarios" class="text-sm font-semibold text-tim flex items-center justify-between mt-1 hover:text-tim-dark">Ver horarios <svg class="w-[18px] h-[18px]"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- Salta -->
+      <article class="card p-6 flex flex-col gap-3.5">
+        <div class="flex items-start gap-3">
+          <span class="icon-pill w-11 h-11 rounded-lg shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
+          <div><div class="text-[22px] font-bold tracking-tight">Salta</div><div class="text-[13px] text-tim-subtle mt-0.5">Salta</div></div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-1">
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Distancia</div><div class="text-[17px] font-semibold mt-0.5 tnum">1471 km</div></div>
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Duración</div><div class="text-[17px] font-semibold mt-0.5 tnum">19h 30m</div></div>
+        </div>
+        <div class="pt-3.5 mt-1 border-t border-tim-border flex items-center justify-between">
+          <div><div class="text-[11px] text-tim-subtle">Desde</div><div class="text-[18px] font-bold text-tim tnum">$29.800</div></div>
+          <div class="text-xs text-tim-subtle">2 salidas/día</div>
+        </div>
+        <a href="#horarios" class="text-sm font-semibold text-tim flex items-center justify-between mt-1 hover:text-tim-dark">Ver horarios <svg class="w-[18px] h-[18px]"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- San Juan -->
+      <article class="card p-6 flex flex-col gap-3.5">
+        <div class="flex items-start gap-3">
+          <span class="icon-pill w-11 h-11 rounded-lg shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
+          <div><div class="text-[22px] font-bold tracking-tight">San Juan</div><div class="text-[13px] text-tim-subtle mt-0.5">San Juan</div></div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-1">
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Distancia</div><div class="text-[17px] font-semibold mt-0.5 tnum">168 km</div></div>
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Duración</div><div class="text-[17px] font-semibold mt-0.5 tnum">2h 30m</div></div>
+        </div>
+        <div class="pt-3.5 mt-1 border-t border-tim-border flex items-center justify-between">
+          <div><div class="text-[11px] text-tim-subtle">Desde</div><div class="text-[18px] font-bold text-tim tnum">$4.200</div></div>
+          <div class="text-xs text-tim-subtle">12 salidas/día</div>
+        </div>
+        <a href="#horarios" class="text-sm font-semibold text-tim flex items-center justify-between mt-1 hover:text-tim-dark">Ver horarios <svg class="w-[18px] h-[18px]"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- Santiago · INTERNACIONAL -->
+      <article class="card p-6 flex flex-col gap-3.5 relative overflow-hidden">
+        <span class="absolute top-0 right-4 bg-tim-text text-white text-[10px] font-bold px-2 py-1 rounded-b">INTERNACIONAL</span>
+        <div class="flex items-start gap-3">
+          <span class="icon-pill w-11 h-11 rounded-lg shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
+          <div><div class="text-[22px] font-bold tracking-tight">Santiago</div><div class="text-[13px] text-tim-subtle mt-0.5">Chile · Internacional</div></div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 mt-1">
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Distancia</div><div class="text-[17px] font-semibold mt-0.5 tnum">359 km</div></div>
+          <div><div class="text-[11px] text-tim-subtle uppercase tracking-[.08em] font-bold">Duración</div><div class="text-[17px] font-semibold mt-0.5 tnum">7h 30m</div></div>
+        </div>
+        <div class="pt-3.5 mt-1 border-t border-tim-border flex items-center justify-between">
+          <div><div class="text-[11px] text-tim-subtle">Desde</div><div class="text-[18px] font-bold text-tim tnum">$35.400</div></div>
+          <div class="text-xs text-tim-subtle">3 salidas/día</div>
+        </div>
+        <a href="#horarios" class="text-sm font-semibold text-tim flex items-center justify-between mt-1 hover:text-tim-dark">Ver horarios <svg class="w-[18px] h-[18px]"><use href="#i-arrow"/></svg></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     02 · HORARIOS Y FRECUENCIAS
+══════════════════════════════════════════════════ -->
+<section id="horarios" class="bg-tim-bgalt py-24">
+  <div class="container-tim">
+
+    <div class="mb-12">
+      <div class="eyebrow">02 · Horarios y frecuencias</div>
+      <h2 class="section-title">Salidas de hoy</h2>
+      <p class="section-sub" id="tabla-subtitle">Tabla en tiempo real de salidas hacia Buenos Aires. Cambiá el destino para ver otras rutas.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div role="tablist" aria-label="Destinos" class="flex gap-2 mb-7 flex-wrap" id="dest-tabs">
+      <button role="tab" aria-selected="true"  data-dest="0" class="tab tab-active">Buenos Aires</button>
+      <button role="tab" aria-selected="false" data-dest="1" class="tab">Córdoba</button>
+      <button role="tab" aria-selected="false" data-dest="2" class="tab">Rosario</button>
+      <button role="tab" aria-selected="false" data-dest="3" class="tab">Mar del Plata</button>
+      <button role="tab" aria-selected="false" data-dest="4" class="tab">Bariloche</button>
+      <button role="tab" aria-selected="false" data-dest="5" class="tab">San Juan</button>
+      <button role="tab" aria-selected="false" data-dest="6" class="tab">Santiago (CL)</button>
+    </div>
+
+    <!-- Tabla dinámica -->
+    <div class="card overflow-hidden">
+      <table class="w-full text-sm border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-tim-border text-left text-[11px] font-bold tracking-[.08em] uppercase text-tim-subtle">
+            <th class="px-3.5 py-4">Empresa</th>
+            <th class="px-3.5 py-4">Servicio</th>
+            <th class="px-3.5 py-4">Salida</th>
+            <th class="px-3.5 py-4">Llegada</th>
+            <th class="px-3.5 py-4">Duración</th>
+            <th class="px-3.5 py-4">Plataforma</th>
+            <th class="px-3.5 py-4">Comodidades</th>
+            <th class="px-3.5 py-4">Precio desde</th>
+            <th class="px-3.5 py-4">Estado</th>
+            <th class="px-3.5 py-4"></th>
+          </tr>
+        </thead>
+        <tbody id="schedule-tbody" class="[&>tr]:border-t [&>tr]:border-tim-border [&>tr:first-child]:border-t-0">
+          <!-- Generado por JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Leyenda -->
+    <div class="flex justify-between items-center mt-6 flex-wrap gap-4">
+      <div class="flex gap-6 text-[13px] text-tim-muted items-center flex-wrap">
+        <span class="inline-flex items-center gap-1.5 text-tim"><svg class="w-5 h-5"><use href="#i-wifi"/></svg><span class="text-tim-muted">Wi-Fi a bordo</span></span>
+        <span class="inline-flex items-center gap-1.5 text-tim"><svg class="w-5 h-5"><use href="#i-plug"/></svg><span class="text-tim-muted">USB / 220V</span></span>
+        <span class="inline-flex items-center gap-1.5 text-tim"><svg class="w-5 h-5"><use href="#i-ac"/></svg><span class="text-tim-muted">Aire acondicionado</span></span>
+        <span class="inline-flex items-center gap-1.5 text-tim"><svg class="w-5 h-5"><use href="#i-bed"/></svg><span class="text-tim-muted">Cama / Cama Suite</span></span>
+      </div>
+      <div id="update-time" class="text-[13px] text-tim-subtle font-mono"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     03 · MAPA
+══════════════════════════════════════════════════ -->
+<section id="mapa" class="bg-white py-24">
+  <div class="container-tim">
+
+    <div class="mb-12">
+      <div class="eyebrow">03 · Mapa de recorridos</div>
+      <h2 class="section-title">Cobertura nacional desde Mendoza</h2>
+      <p class="section-sub">TIM conecta el centro-oeste argentino con todo el país. Cada línea es una ruta directa desde nuestra terminal.</p>
+    </div>
+
+    <div class="grid grid-cols-[1.5fr_1fr] gap-8 items-stretch">
+
+      <!-- Mapa SVG -->
+      <div class="bg-[#FBFAF7] border border-tim-border rounded-xl relative min-h-[500px] p-6 overflow-hidden">
+        <svg viewBox="0 0 600 760" class="w-full h-full block">
+          <!-- Rutas nacionales -->
+          <line x1="195" y1="380" x2="430" y2="425" stroke="#722F37" stroke-width="1.8" opacity=".6"/>
+          <line x1="195" y1="380" x2="360" y2="335" stroke="#722F37" stroke-width="1.8" opacity=".6"/>
+          <line x1="195" y1="380" x2="415" y2="365" stroke="#722F37" stroke-width="1.8" opacity=".6"/>
+          <line x1="195" y1="380" x2="470" y2="490" stroke="#722F37" stroke-width="1.8" opacity=".6"/>
+          <line x1="195" y1="380" x2="240" y2="600" stroke="#722F37" stroke-width="1.8" opacity=".6"/>
+          <line x1="195" y1="380" x2="310" y2="170" stroke="#722F37" stroke-width="1.8" opacity=".6"/>
+          <line x1="195" y1="380" x2="200" y2="330" stroke="#722F37" stroke-width="1.8" opacity=".6"/>
+          <!-- Ruta internacional (Santiago) -->
+          <line x1="195" y1="380" x2="105" y2="380" stroke="#555" stroke-width="1.8" stroke-dasharray="5 4" opacity=".6"/>
+          <!-- Nodos de ciudades -->
+          <g font-family="Inter, sans-serif">
+            <g><circle cx="430" cy="425" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="442" y="430" font-size="12" font-weight="600" fill="#333">Buenos Aires</text></g>
+            <g><circle cx="360" cy="335" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="372" y="340" font-size="12" font-weight="600" fill="#333">Córdoba</text></g>
+            <g><circle cx="415" cy="365" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="427" y="370" font-size="12" font-weight="600" fill="#333">Rosario</text></g>
+            <g><circle cx="470" cy="490" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="482" y="495" font-size="12" font-weight="600" fill="#333">Mar del Plata</text></g>
+            <g><circle cx="240" cy="600" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="252" y="605" font-size="12" font-weight="600" fill="#333">Bariloche</text></g>
+            <g><circle cx="310" cy="170" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="322" y="175" font-size="12" font-weight="600" fill="#333">Salta</text></g>
+            <g><circle cx="200" cy="330" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="130" y="325" font-size="12" font-weight="600" fill="#333">San Juan</text></g>
+            <g><circle cx="105" cy="380" r="6" fill="#fff" stroke="#555" stroke-width="2"/><text x="15"  y="385" font-size="12" font-weight="600" fill="#555">Santiago (CL)</text></g>
+            <!-- TIM Mendoza -->
+            <circle cx="195" cy="380" r="30" fill="#722F37" opacity=".07"/>
+            <circle cx="195" cy="380" r="20" fill="#722F37" opacity=".16"/>
+            <circle cx="195" cy="380" r="10" fill="#722F37"/>
+            <text x="185" y="352" font-size="13" font-weight="700" fill="#722F37" text-anchor="end">TIM</text>
+            <text x="185" y="368" font-size="11" fill="#666" text-anchor="end">Mendoza</text>
+          </g>
+        </svg>
+        <!-- Leyenda -->
+        <div class="absolute bottom-6 right-6 bg-white border border-tim-border rounded-lg px-4 py-3 text-xs flex flex-col gap-2 shadow-sm">
+          <div class="flex items-center gap-2.5"><span class="inline-block w-5 h-0.5 bg-tim rounded"></span><span class="text-tim-muted">Ruta nacional</span></div>
+          <div class="flex items-center gap-2.5"><span class="inline-block w-5 h-0.5" style="background-image: repeating-linear-gradient(90deg,#555 0 4px,transparent 4px 8px)"></span><span class="text-tim-muted">Ruta internacional</span></div>
+        </div>
+      </div>
+
+      <!-- Ubicación + Horarios -->
+      <div class="flex flex-col gap-4">
+        <div class="bg-tim-light border border-tim/20 rounded-xl p-7">
+          <div class="eyebrow !mb-3">Cómo llegar a TIM</div>
+          <div class="text-[22px] font-bold tracking-tight leading-snug mb-2">Juan B. Alberdi s/n, M5519</div>
+          <div class="text-[15px] text-tim-muted leading-relaxed">Guaymallén, Mendoza · A 3 km del microcentro</div>
+          <div class="flex gap-2 mt-5 flex-wrap">
+            <span class="bg-white border border-tim-border rounded px-3 py-2 text-[13px] font-semibold">Metrotranvía · Línea Urbana</span>
+            <span class="bg-white border border-tim-border rounded px-3 py-2 text-[13px] font-semibold">Colectivos 110 · 200 · 800</span>
+          </div>
+        </div>
+        <div class="card p-7 flex-1">
+          <div class="eyebrow !mb-4">Horario de atención</div>
+          <dl class="flex flex-col gap-3 text-[15px]">
+            <div class="flex justify-between"><dt class="text-tim-muted">Boleterías</dt><dd class="font-semibold">24 horas · 7 días</dd></div>
+            <div class="flex justify-between"><dt class="text-tim-muted">Informes</dt><dd class="font-semibold">06:00 — 23:00</dd></div>
+            <div class="flex justify-between"><dt class="text-tim-muted">Equipaje</dt><dd class="font-semibold">05:30 — 23:30</dd></div>
+            <div class="flex justify-between"><dt class="text-tim-muted">Asistencia accesible</dt><dd class="font-semibold">24 horas</dd></div>
+          </dl>
+          <div class="mt-5 pt-5 border-t border-tim-border text-[13px] text-tim-muted">
+            Atención telefónica · <strong class="text-tim-text font-semibold">0261 476-5875</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     04 · EMPRESAS Y PLATAFORMAS
+══════════════════════════════════════════════════ -->
+<section id="empresas" class="bg-tim-bgalt py-24">
+  <div class="container-tim">
+
+    <div class="mb-12">
+      <div class="eyebrow">04 · Empresas y plataformas</div>
+      <h2 class="section-title">Operadores que salen desde TIM</h2>
+      <p class="section-sub">Cada empresa tiene plataforma fija asignada para que sepas exactamente desde dónde sale tu micro.</p>
+    </div>
+
+    <div class="grid grid-cols-4 gap-4">
+      <article class="card p-5 flex gap-3.5 items-center">
+        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">AN</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-[15px] font-bold mb-0.5">Andesmar</div>
+          <div class="text-xs text-tim-muted mb-2">Cobertura nacional · Chile</div>
+          <span class="bg-tim-light text-tim px-2 py-1 rounded text-[11px] font-bold tnum">Plat. A02 · A04</span>
+        </div>
+      </article>
+      <article class="card p-5 flex gap-3.5 items-center">
+        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">CH</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-[15px] font-bold mb-0.5">Chevallier</div>
+          <div class="text-xs text-tim-muted mb-2">Buenos Aires · Litoral</div>
+          <span class="bg-tim-light text-tim px-2 py-1 rounded text-[11px] font-bold tnum">Plat. A07</span>
+        </div>
+      </article>
+      <article class="card p-5 flex gap-3.5 items-center">
+        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">CI</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-[15px] font-bold mb-0.5">Cata Internacional</div>
+          <div class="text-xs text-tim-muted mb-2">Buenos Aires · Lima · Asunción</div>
+          <span class="bg-tim-light text-tim px-2 py-1 rounded text-[11px] font-bold tnum">Plat. B02</span>
+        </div>
+      </article>
+      <article class="card p-5 flex gap-3.5 items-center">
+        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">FB</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-[15px] font-bold mb-0.5">Flecha Bus</div>
+          <div class="text-xs text-tim-muted mb-2">Buenos Aires · NOA</div>
+          <span class="bg-tim-light text-tim px-2 py-1 rounded text-[11px] font-bold tnum">Plat. A11</span>
+        </div>
+      </article>
+      <article class="card p-5 flex gap-3.5 items-center">
+        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">ER</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-[15px] font-bold mb-0.5">El Rápido</div>
+          <div class="text-xs text-tim-muted mb-2">Buenos Aires · Mar del Plata</div>
+          <span class="bg-tim-light text-tim px-2 py-1 rounded text-[11px] font-bold tnum">Plat. B05</span>
+        </div>
+      </article>
+      <article class="card p-5 flex gap-3.5 items-center">
+        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">VB</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-[15px] font-bold mb-0.5">Vía Bariloche</div>
+          <div class="text-xs text-tim-muted mb-2">Patagonia · Bariloche</div>
+          <span class="bg-tim-light text-tim px-2 py-1 rounded text-[11px] font-bold tnum">Plat. A09</span>
+        </div>
+      </article>
+      <article class="card p-5 flex gap-3.5 items-center">
+        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">CN</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-[15px] font-bold mb-0.5">Crucero del Norte</div>
+          <div class="text-xs text-tim-muted mb-2">NEA · Misiones</div>
+          <span class="bg-tim-light text-tim px-2 py-1 rounded text-[11px] font-bold tnum">Plat. A02</span>
+        </div>
+      </article>
+      <article class="card p-5 flex gap-3.5 items-center">
+        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">EC</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-[15px] font-bold mb-0.5">El Cóndor</div>
+          <div class="text-xs text-tim-muted mb-2">Córdoba · Rosario</div>
+          <span class="bg-tim-light text-tim px-2 py-1 rounded text-[11px] font-bold tnum">Plat. B09</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     05 · ACCESIBILIDAD
+══════════════════════════════════════════════════ -->
+<section id="accesibilidad" class="bg-white py-24">
+  <div class="container-tim">
+
+    <div class="mb-12">
+      <div class="eyebrow">05 · Accesibilidad</div>
+      <h2 class="section-title">Diseñado para que todos viajen</h2>
+      <p class="section-sub">TIM cumple con WCAG 2.1 AA y el Decreto 914/97 de Argentina. Si necesitás asistencia, podés solicitarla al reservar o llamando 24/7 al 0261 476-5875.</p>
+    </div>
+
+    <div class="grid grid-cols-3 gap-6">
+
+      <div class="bg-tim-bgalt border border-tim-border rounded-xl p-8 flex flex-col gap-4">
+        <div class="w-16 h-16 rounded-2xl bg-white border border-tim-border flex items-center justify-center text-tim"><svg class="w-7 h-7"><use href="#i-wheelchair"/></svg></div>
+        <div>
+          <div class="text-[19px] font-bold mb-2 leading-snug">Espacios para silla de ruedas</div>
+          <div class="text-sm text-tim-muted leading-relaxed">Todos los micros cuentan con 2 espacios reservados con cinturón de seguridad y anclaje para sillas de ruedas.</div>
+        </div>
+        <div class="mt-auto pt-3.5 border-t border-tim-border text-[11px] text-tim font-bold tracking-[.1em] uppercase">Norma · EN 1789</div>
+      </div>
+
+      <div class="bg-tim-bgalt border border-tim-border rounded-xl p-8 flex flex-col gap-4">
+        <div class="w-16 h-16 rounded-2xl bg-white border border-tim-border flex items-center justify-center text-tim"><svg class="w-7 h-7"><use href="#i-ramp"/></svg></div>
+        <div>
+          <div class="text-[19px] font-bold mb-2 leading-snug">Rampas y ascensores</div>
+          <div class="text-sm text-tim-muted leading-relaxed">Rampas mecánicas en todos los andenes. Ascensor central para acceder a plataformas A y B, sin escalones desde la calle.</div>
+        </div>
+        <div class="mt-auto pt-3.5 border-t border-tim-border text-[11px] text-tim font-bold tracking-[.1em] uppercase">Norma · IRAM 11929</div>
+      </div>
+
+      <div class="bg-tim-bgalt border border-tim-border rounded-xl p-8 flex flex-col gap-4">
+        <div class="w-16 h-16 rounded-2xl bg-white border border-tim-border flex items-center justify-center text-tim"><svg class="w-7 h-7"><use href="#i-audio"/></svg></div>
+        <div>
+          <div class="text-[19px] font-bold mb-2 leading-snug">Información sonora</div>
+          <div class="text-sm text-tim-muted leading-relaxed">Salidas y demoras anunciadas por altavoz cada 5 minutos. Atención telefónica disponible 24/7 con operador humano.</div>
+        </div>
+        <div class="mt-auto pt-3.5 border-t border-tim-border text-[11px] text-tim font-bold tracking-[.1em] uppercase">Norma · WCAG 1.2.5</div>
+      </div>
+
+      <div class="bg-tim-bgalt border border-tim-border rounded-xl p-8 flex flex-col gap-4">
+        <div class="w-16 h-16 rounded-2xl bg-white border border-tim-border flex items-center justify-center text-tim"><svg class="w-7 h-7"><use href="#i-eye"/></svg></div>
+        <div>
+          <div class="text-[19px] font-bold mb-2 leading-snug">Contraste y tipografía</div>
+          <div class="text-sm text-tim-muted leading-relaxed">Carteles e indicadores con contraste 4.5:1 mínimo. Pantallas LED con tipografía de 18mm legibles a 10 metros de distancia.</div>
+        </div>
+        <div class="mt-auto pt-3.5 border-t border-tim-border text-[11px] text-tim font-bold tracking-[.1em] uppercase">Norma · WCAG 1.4.3 AA</div>
+      </div>
+
+      <div class="bg-tim-bgalt border border-tim-border rounded-xl p-8 flex flex-col gap-4">
+        <div class="w-16 h-16 rounded-2xl bg-white border border-tim-border flex items-center justify-center text-tim"><svg class="w-7 h-7"><use href="#i-signs"/></svg></div>
+        <div>
+          <div class="text-[19px] font-bold mb-2 leading-snug">Señalización clara</div>
+          <div class="text-sm text-tim-muted leading-relaxed">Pictogramas universales en cada andén, baños y servicios. Mapa táctil de la terminal a la entrada de Informes.</div>
+        </div>
+        <div class="mt-auto pt-3.5 border-t border-tim-border text-[11px] text-tim font-bold tracking-[.1em] uppercase">Norma · ISO 7001</div>
+      </div>
+
+      <div class="bg-tim-bgalt border border-tim-border rounded-xl p-8 flex flex-col gap-4">
+        <div class="w-16 h-16 rounded-2xl bg-white border border-tim-border flex items-center justify-center text-tim"><svg class="w-7 h-7"><use href="#i-toilet"/></svg></div>
+        <div>
+          <div class="text-[19px] font-bold mb-2 leading-snug">Servicios accesibles</div>
+          <div class="text-sm text-tim-muted leading-relaxed">Baños en cada nivel con barra de apoyo, alarma de asistencia y espacio de giro de 1.5m. Mesa de cambio para bebés.</div>
+        </div>
+        <div class="mt-auto pt-3.5 border-t border-tim-border text-[11px] text-tim font-bold tracking-[.1em] uppercase">Norma · Decreto 914/97</div>
+      </div>
+
+    </div>
+
+    <!-- CTA Accesibilidad -->
+    <div class="mt-10 px-8 py-6 bg-tim text-white rounded-xl flex items-center justify-between gap-8 flex-wrap">
+      <div>
+        <div class="text-[13px] font-bold tracking-[.14em] uppercase opacity-80 mb-1.5">¿Necesitás asistencia?</div>
+        <div class="text-[22px] font-semibold tracking-tight">Coordinala antes de viajar — sin costo adicional.</div>
+      </div>
+      <div class="flex gap-3">
+        <button class="bg-white text-tim font-bold rounded-lg px-6 py-[13px] min-h-[44px] hover:bg-tim-light transition-colors">Solicitar asistencia →</button>
+        <button class="btn-ghost-light text-sm">Llamar 0261 476-5875</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════ -->
+<footer class="bg-tim-text text-white pt-16 pb-8">
+  <div class="container-tim">
+    <div class="grid grid-cols-[2fr_1fr_1fr_1fr] gap-12 pb-12 border-b border-white/10">
+      <div>
+        <div class="text-[32px] font-extrabold tracking-tight">TIM</div>
+        <div class="text-[13px] opacity-70 mt-1.5">Terminal Inteligente de Mendoza</div>
+        <address class="text-sm not-italic opacity-85 mt-5 leading-relaxed max-w-[280px]">
+          Juan B. Alberdi s/n, M5519<br>
+          Guaymallén, Mendoza, Argentina<br>
+          <span class="opacity-60">Atención 24/7 · 0261 476-5875</span>
+        </address>
+      </div>
+      <div>
+        <div class="text-[13px] font-bold tracking-[.08em] uppercase mb-4">Navegación</div>
+        <ul class="flex flex-col gap-2.5 text-sm opacity-80">
+          <li><a href="index.html"  class="hover:opacity-100 transition-opacity">Inicio</a></li>
+          <li><a href="#destinos"   class="hover:opacity-100 transition-opacity">Servicios</a></li>
+          <li><a href="#accesibilidad" class="hover:opacity-100 transition-opacity">Accesibilidad</a></li>
+          <li><a href="#"           class="hover:opacity-100 transition-opacity">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-[13px] font-bold tracking-[.08em] uppercase mb-4">Servicios</div>
+        <ul class="flex flex-col gap-2.5 text-sm opacity-80">
+          <li><a href="#" class="hover:opacity-100 transition-opacity font-semibold text-white/95">Larga Distancia</a></li>
+          <li><a href="#" class="hover:opacity-100 transition-opacity">Alta Montaña</a></li>
+          <li><a href="#" class="hover:opacity-100 transition-opacity">Ruta del Vino</a></li>
+          <li><a href="#" class="hover:opacity-100 transition-opacity">Aeropuerto</a></li>
+          <li><a href="#" class="hover:opacity-100 transition-opacity">Universitario</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-[13px] font-bold tracking-[.08em] uppercase mb-4">Información</div>
+        <ul class="flex flex-col gap-2.5 text-sm opacity-80">
+          <li><a href="#mapa" class="hover:opacity-100 transition-opacity">Llegar a la terminal</a></li>
+          <li><a href="#"     class="hover:opacity-100 transition-opacity">Tarifas</a></li>
+          <li><a href="#"     class="hover:opacity-100 transition-opacity">Política de privacidad</a></li>
+          <li><a href="#"     class="hover:opacity-100 transition-opacity">Términos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex justify-between items-center mt-6 text-[13px] opacity-65">
+      <div>© 2026 Nexo Studio · Terminal Inteligente de Mendoza</div>
+      <div>Hecho en Mendoza, Argentina</div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="js/horarios.js" defer></script>
+
+</body>
+</html>
