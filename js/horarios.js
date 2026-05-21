@@ -1,5 +1,5 @@
 // ════════════════════════════════════════════════════════════════════════════
-//  TIM · Larga Distancia — Lógica de horarios y tabs
+//  TIM · Larga Distancia - Lógica de horarios y tabs
 //  Nexo Studio · UADE Desarrollo Web 2026
 // ════════════════════════════════════════════════════════════════════════════
 
@@ -9,7 +9,7 @@
 
 const DESTINOS_DATA = [
 
-  // 0 — Buenos Aires
+  // 0 - Buenos Aires
   {
     label: 'Buenos Aires',
     subtitle: 'Tabla en tiempo real de salidas hacia Buenos Aires. Cambiá el destino para ver otras rutas.',
@@ -24,7 +24,7 @@ const DESTINOS_DATA = [
     ]
   },
 
-  // 1 — Córdoba
+  // 1 - Córdoba
   {
     label: 'Córdoba',
     subtitle: 'Salidas hacia Córdoba capital. Servicio diurno y nocturno, 622 km por RN 7.',
@@ -37,7 +37,7 @@ const DESTINOS_DATA = [
     ]
   },
 
-  // 2 — Rosario
+  // 2 - Rosario
   {
     label: 'Rosario',
     subtitle: 'Salidas hacia Rosario, Santa Fe. 866 km vía Córdoba, servicios nocturnos.',
@@ -48,7 +48,7 @@ const DESTINOS_DATA = [
     ]
   },
 
-  // 3 — Mar del Plata
+  // 3 - Mar del Plata
   {
     label: 'Mar del Plata',
     subtitle: 'Salidas hacia Mar del Plata. 1444 km, servicio nocturno con llegada a la mañana.',
@@ -58,7 +58,7 @@ const DESTINOS_DATA = [
     ]
   },
 
-  // 4 — Bariloche
+  // 4 - Bariloche
   {
     label: 'Bariloche',
     subtitle: 'Salidas hacia San Carlos de Bariloche. 1340 km por RN 40, cruce Patagónico.',
@@ -68,7 +68,7 @@ const DESTINOS_DATA = [
     ]
   },
 
-  // 5 — San Juan
+  // 5 - San Juan
   {
     label: 'San Juan',
     subtitle: 'Salidas hacia San Juan capital. 168 km, servicio frecuente durante todo el día.',
@@ -82,7 +82,7 @@ const DESTINOS_DATA = [
     ]
   },
 
-  // 6 — Santiago (CL)
+  // 6 - Santiago (CL)
   {
     label: 'Santiago (CL)',
     subtitle: 'Servicio internacional hacia Santiago de Chile. Se requiere documento de identidad o pasaporte vigente.',
@@ -114,7 +114,7 @@ function renderTable(destIndex) {
   tbody.innerHTML = dest.filas.map(f => {
     const amenHtml = f.amen.length
       ? `<span class="amenities">${f.amen.map(a => AMEN_ICONS[a]).join('')}</span>`
-      : '<span class="text-tim-subtle text-xs">—</span>';
+      : '<span class="text-tim-subtle text-xs">-</span>';
 
     const statusClass = f.status === 'ok' ? 'status-ok' : 'status-warn';
 
