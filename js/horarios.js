@@ -195,6 +195,50 @@ function initSmoothScroll() {
   });
 }
 
+// ─── ACCESIBILIDAD: panel propio en terracota ──────────────────────────────
+function initAccesibilidad() {
+  const btn      = document.getElementById('acc-btn');
+  const panel    = document.getElementById('acc-panel');
+  const contrast = document.getElementById('toggle-contrast');
+  const fontsize = document.getElementById('toggle-fontsize');
+  if (!btn || !panel) return;
+
+  // Abrir / cerrar el panel al tocar el botón
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const abierto = !panel.classList.contains('hidden');
+    panel.classList.toggle('hidden', abierto);
+    btn.setAttribute('aria-expanded', String(!abierto));
+  });
+
+  // Cerrar el panel al hacer click fuera
+  document.addEventListener('click', e => {
+    if (!panel.contains(e.target) && e.target !== btn) {
+      panel.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Activar/desactivar una opción y recordarla en el navegador
+  function toggleOpcion(boton, clase, clave) {
+    const activo = document.body.classList.toggle(clase);
+    boton.setAttribute('aria-pressed', String(activo));
+    localStorage.setItem(clave, activo);
+  }
+  contrast.addEventListener('click', () => toggleOpcion(contrast, 'high-contrast', 'tim-ld-contraste'));
+  fontsize.addEventListener('click', () => toggleOpcion(fontsize, 'large-text',    'tim-ld-texto'));
+
+  // Restaurar las preferencias guardadas de visitas anteriores
+  if (localStorage.getItem('tim-ld-contraste') === 'true') {
+    document.body.classList.add('high-contrast');
+    contrast.setAttribute('aria-pressed', 'true');
+  }
+  if (localStorage.getItem('tim-ld-texto') === 'true') {
+    document.body.classList.add('large-text');
+    fontsize.setAttribute('aria-pressed', 'true');
+  }
+}
+
 // ─── INIT ───────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderTable(0);
@@ -202,4 +246,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initSearch();
   setUpdateTime();
   initSmoothScroll();
+  initAccesibilidad();
 });

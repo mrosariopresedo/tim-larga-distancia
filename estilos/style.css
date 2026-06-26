@@ -14,6 +14,10 @@
   --tim-border: #DDDDDD;
   --tim-bgalt:  #F7F7F7;
   --white:      #FFFFFF;
+  /* Color identificatorio de la línea Larga Distancia (acento) */
+  --terra:      #C2410C;
+  --terra-dark: #9A3412;
+  --terra-light:#FBEBE2;
 }
 
 /* ── Reset y base ────────────────────────────────────────── */
@@ -136,20 +140,20 @@ button:focus-visible {
 }
 
 .tab-active {
-  background-color: var(--tim);
-  border-color: var(--tim);
+  background-color: var(--terra);
+  border-color: var(--terra);
   color: var(--white);
 }
 
 .tab-active:hover {
-  background-color: var(--tim-dark);
+  background-color: var(--terra-dark);
 }
 
 /* ── Tipografía de secciones ─────────────────────────────── */
 .eyebrow {
   font-size: 13px;
   font-weight: 700;
-  color: var(--tim);
+  color: var(--terra);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin-bottom: 12px;
@@ -1044,3 +1048,66 @@ button:focus-visible {
   color: var(--tim-subtle);
   font-family: monospace;
 }
+
+/* ── Panel de accesibilidad (opciones) ───────────────────── */
+.acc-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1.5px solid var(--tim-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--white);
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.acc-option:hover {
+  border-color: var(--terra);
+}
+
+/* Estado activado: se ilumina en terracota */
+.acc-option[aria-pressed="true"] {
+  border-color: var(--terra);
+  background: var(--terra-light);
+}
+
+.acc-option__name {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--tim-text);
+}
+
+.acc-option[aria-pressed="true"] .acc-option__name {
+  color: var(--terra);
+}
+
+.acc-option__desc {
+  display: block;
+  font-size: 12px;
+  color: var(--tim-muted);
+  margin-top: 2px;
+}
+
+/* ── Modo alto contraste (negro / amarillo) ──────────────── */
+body.high-contrast,
+body.high-contrast header,
+body.high-contrast footer,
+body.high-contrast section,
+body.high-contrast main { background-color: #000 !important; color: #facc15 !important; border-color: #facc15 !important; }
+body.high-contrast .bg-tim       { background-color: #1a0a0c !important; }
+body.high-contrast .bg-white     { background-color: #111 !important; }
+body.high-contrast .bg-tim-bgalt { background-color: #0a0a0a !important; }
+body.high-contrast .bg-gray-50   { background-color: #111 !important; }
+body.high-contrast .card         { background-color: #111 !important; border-color: #facc15 !important; }
+body.high-contrast .text-tim-text,
+body.high-contrast .text-tim-muted,
+body.high-contrast .text-tim-subtle { color: #facc15 !important; }
+body.high-contrast .text-tim     { color: #facc15 !important; }
+body.high-contrast a             { color: #facc15 !important; }
+body.high-contrast .bg-tim-light { background-color: #222 !important; }
+body.high-contrast #acc-panel    { background-color: #111 !important; }
+body.high-contrast :focus-visible { outline-color: #facc15; }
+
+/* ── Texto grande ────────────────────────────────────────── */
+body.large-text { zoom: 1.2; }

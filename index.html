@@ -26,6 +26,12 @@
             border:  '#DDDDDD',
             bgalt:   '#F7F7F7',
           },
+          // Color identificatorio de la línea Larga Distancia (acento, además del bordó de marca)
+          terra: {
+            DEFAULT: '#C2410C',
+            dark:    '#9A3412',
+            light:   '#FBEBE2',
+          },
         },
         fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
         maxWidth:   { container: '1280px' },
@@ -76,7 +82,30 @@
       <a href="https://moraraimondo-cyber.github.io/Metrotranvia/" class="border-b-2 border-transparent pb-0.5 opacity-80 hover:opacity-100 transition-opacity">Aeropuerto</a>
       <a href="https://martinasama2005.github.io/ciudaduniversitaria/" class="border-b-2 border-transparent pb-0.5 opacity-80 hover:opacity-100 transition-opacity">Universitario</a>
     </nav>
-    <button class="btn-ghost-light ml-auto text-sm">Accesibilidad</button>
+    <!-- Accesibilidad: botón + panel desplegable con estética propia (terracota) -->
+    <div class="relative ml-auto shrink-0">
+      <button id="acc-btn" class="btn-ghost-light text-sm" aria-expanded="false" aria-controls="acc-panel">Accesibilidad</button>
+
+      <div id="acc-panel" role="dialog" aria-label="Opciones de accesibilidad" class="hidden absolute right-0 top-[calc(100%+14px)] w-72 bg-white text-tim-text rounded-xl shadow-[0_20px_50px_rgba(0,0,0,.22)] overflow-hidden z-50">
+        <!-- Encabezado terracota: diferencia visual respecto a la página principal -->
+        <div class="bg-terra text-white px-5 py-3.5">
+          <p class="text-[11px] font-bold uppercase tracking-[.14em] opacity-90">Accesibilidad</p>
+          <p class="text-sm font-semibold">Ajustá la lectura del sitio</p>
+        </div>
+
+        <!-- Cada opción es un botón grande que se ilumina en terracota al activarse -->
+        <div class="p-3 flex flex-col gap-2">
+          <button id="toggle-contrast" type="button" aria-pressed="false" class="acc-option">
+            <span class="acc-option__name">Alto contraste</span>
+            <span class="acc-option__desc">Fondo negro · texto amarillo</span>
+          </button>
+          <button id="toggle-fontsize" type="button" aria-pressed="false" class="acc-option">
+            <span class="acc-option__name">Texto grande</span>
+            <span class="acc-option__desc">Aumenta el tamaño de letra</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Franja con el color identificatorio de la línea Larga Distancia (terracota) -->
   <div style="height:4px;background:#C2410C"></div>
