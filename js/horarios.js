@@ -75,9 +75,9 @@ const DESTINOS_DATA = [
     filas: [
       { emp:'Vallecito', serv:'Común',       dep:'06:00', arr:'08:30', dur:'2h 30m', plat:'C01', amen:[],       precio:'$4.200', status:'ok', statusLabel:'A horario' },
       { emp:'Vallecito', serv:'Común',       dep:'08:30', arr:'11:00', dur:'2h 30m', plat:'C01', amen:[],       precio:'$4.200', status:'ok', statusLabel:'A horario' },
-      { emp:'TASS',      serv:'Diferencial', dep:'10:00', arr:'12:30', dur:'2h 30m', plat:'C03', amen:['wifi'], precio:'$5.800', status:'ok', statusLabel:'A horario' },
+      { emp:'Andesmar',  serv:'Diferencial', dep:'10:00', arr:'12:30', dur:'2h 30m', plat:'C03', amen:['wifi'], precio:'$5.800', status:'ok', statusLabel:'A horario' },
       { emp:'Vallecito', serv:'Común',       dep:'12:00', arr:'14:30', dur:'2h 30m', plat:'C01', amen:[],       precio:'$4.200', status:'ok', statusLabel:'A horario' },
-      { emp:'TASS',      serv:'Diferencial', dep:'16:00', arr:'18:30', dur:'2h 30m', plat:'C03', amen:['wifi'], precio:'$5.800', status:'ok', statusLabel:'A horario' },
+      { emp:'Andesmar',  serv:'Diferencial', dep:'16:00', arr:'18:30', dur:'2h 30m', plat:'C03', amen:['wifi'], precio:'$5.800', status:'ok', statusLabel:'A horario' },
       { emp:'Vallecito', serv:'Común',       dep:'18:30', arr:'21:00', dur:'2h 30m', plat:'C01', amen:[],       precio:'$4.200', status:'ok', statusLabel:'A horario' },
     ]
   },
@@ -89,7 +89,7 @@ const DESTINOS_DATA = [
     filas: [
       { emp:'Cata Internacional', serv:'Internacional', dep:'09:00', arr:'16:30',    dur:'7h 30m', plat:'B02', amen:['wifi','plug','ac'],       precio:'$35.400', status:'ok', statusLabel:'A horario' },
       { emp:'Andesmar',           serv:'Internacional', dep:'14:00', arr:'21:30',    dur:'7h 30m', plat:'A04', amen:['wifi','plug','ac','bed'], precio:'$42.000', status:'ok', statusLabel:'A horario' },
-      { emp:'Tur-Bus',            serv:'Internacional', dep:'22:00', arr:'05:30 +1', dur:'7h 30m', plat:'B06', amen:['wifi','plug','bed'],      precio:'$38.900', status:'ok', statusLabel:'A horario' },
+      { emp:'El Rápido Internacional', serv:'Internacional', dep:'22:00', arr:'05:30 +1', dur:'7h 30m', plat:'B06', amen:['wifi','plug','bed'], precio:'$38.900', status:'ok', statusLabel:'A horario' },
     ]
   },
 
