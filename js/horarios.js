@@ -93,6 +93,16 @@ const DESTINOS_DATA = [
     ]
   },
 
+  // 7 - Salta
+  {
+    label: 'Salta',
+    subtitle: 'Salidas hacia Salta capital. 1260 km por el norte argentino, con servicios nocturnos.',
+    filas: [
+      { emp:'Andesmar',   serv:'Cama',      dep:'12:30', arr:'06:00 +1', dur:'17h 30m', plat:'A04', amen:['wifi','plug','bed'], precio:'$29.800', status:'ok',   statusLabel:'A horario' },
+      { emp:'Flecha Bus', serv:'Semi-Cama', dep:'15:00', arr:'09:00 +1', dur:'18h 00m', plat:'A11', amen:['wifi','plug'],       precio:'$24.500', status:'warn', statusLabel:'Últimos lugares' },
+    ]
+  },
+
 ];
 
 // ─── ÍCONOS DE AMENIDADES ───────────────────────────────────────────────────
@@ -155,32 +165,21 @@ function initTabs() {
   });
 }
 
-// ─── BUSCADOR: scroll a horarios + activar tab ──────────────────────────────
+// ─── BUSCADOR: abre el destino elegido en la tabla ──────────────────────────
 function initSearch() {
   document.getElementById('search-form').addEventListener('submit', e => {
     e.preventDefault();
-    const input  = document.getElementById('search-destino').value.trim().toLowerCase();
-    const labels = DESTINOS_DATA.map(d => d.label.toLowerCase());
-    const match  = labels.findIndex(l => l.includes(input) || input.includes(l.split(' ')[0]));
-    const idx    = match >= 0 ? match : 0;
-
-    const tabs = document.querySelectorAll('#dest-tabs .tab');
-    tabs.forEach((t, i) => {
-      t.classList.toggle('tab-active', i === idx);
-      t.setAttribute('aria-selected', i === idx ? 'true' : 'false');
-    });
-    renderTable(idx);
-
-    document.getElementById('horarios').scrollIntoView({ behavior: 'smooth' });
+    const idx = parseInt(document.getElementById('search-destino').value, 10);
+    if (!isNaN(idx)) seleccionarDestino(idx);
   });
 }
 
-// ─── Seleccionar un destino desde el mapa: activa su pestaña y baja a Horarios
+// ─── Seleccionar un destino: activa su pestaña (por data-dest) y baja a Horarios
 function seleccionarDestino(idx) {
-  const tabs = document.querySelectorAll('#dest-tabs .tab');
-  tabs.forEach((t, i) => {
-    t.classList.toggle('tab-active', i === idx);
-    t.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+  document.querySelectorAll('#dest-tabs .tab').forEach(t => {
+    const activo = parseInt(t.dataset.dest, 10) === idx;
+    t.classList.toggle('tab-active', activo);
+    t.setAttribute('aria-selected', activo ? 'true' : 'false');
   });
   renderTable(idx);
   document.getElementById('horarios').scrollIntoView({ behavior: 'smooth' });
@@ -258,11 +257,37 @@ function initEnlacesExternos() {
   });
 }
 
+// ─── Poblar el buscador con los destinos (desplegable predeterminado) ───────
+function cargarBuscadorDestinos() {
+  const select = document.getElementById('search-destino');
+  if (!select) return;
+  DESTINOS_DATA.forEach((d, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = d.label;
+    select.appendChild(opt);
+  });
+}
+
+// ─── "Ver horarios" de cada tarjeta → abre ese destino en la tabla ──────────
+function initVerHorarios() {
+  // Orden de las tarjetas de Destinos → índice de su pestaña en la tabla
+  const orden = [0, 1, 2, 3, 4, 7, 5, 6];
+  document.querySelectorAll('#destinos article a[href="#horarios"]').forEach((link, i) => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      seleccionarDestino(orden[i]);
+    });
+  });
+}
+
 // ─── INIT ───────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderTable(0);
   initTabs();
+  cargarBuscadorDestinos();
   initSearch();
+  initVerHorarios();
   setUpdateTime();
   initSmoothScroll();
   initAccesibilidad();

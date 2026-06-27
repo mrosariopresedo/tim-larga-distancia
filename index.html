@@ -179,7 +179,9 @@
         <span class="icon-pill w-7 h-7 shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
         <span class="min-w-0">
           <span class="block text-[10px] text-tim-subtle uppercase tracking-[.08em] font-bold mb-0.5">Destino</span>
-          <input id="search-destino" class="block text-sm font-bold text-tim-text bg-transparent outline-none w-full" placeholder="Buenos Aires" />
+          <select id="search-destino" required class="block text-sm font-bold text-tim-text bg-transparent outline-none w-full cursor-pointer">
+            <option value="" disabled selected>Elegí tu destino</option>
+          </select>
         </span>
       </label>
       <span class="w-px bg-tim-border self-stretch my-1"></span>
@@ -403,6 +405,7 @@
       <button role="tab" aria-selected="false" data-dest="2" class="tab">Rosario</button>
       <button role="tab" aria-selected="false" data-dest="3" class="tab">Mar del Plata</button>
       <button role="tab" aria-selected="false" data-dest="4" class="tab">Bariloche</button>
+      <button role="tab" aria-selected="false" data-dest="7" class="tab">Salta</button>
       <button role="tab" aria-selected="false" data-dest="5" class="tab">San Juan</button>
       <button role="tab" aria-selected="false" data-dest="6" class="tab">Santiago (CL)</button>
     </div>
@@ -482,7 +485,7 @@
             <g class="mapa-nodo" onclick="seleccionarDestino(2)"><circle cx="415" cy="365" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="427" y="370" font-size="12" font-weight="600" fill="#333">Rosario</text></g>
             <g class="mapa-nodo" onclick="seleccionarDestino(3)"><circle cx="470" cy="490" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="482" y="495" font-size="12" font-weight="600" fill="#333">Mar del Plata</text></g>
             <g class="mapa-nodo" onclick="seleccionarDestino(4)"><circle cx="240" cy="600" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="252" y="605" font-size="12" font-weight="600" fill="#333">Bariloche</text></g>
-            <g class="mapa-nodo" onclick="document.getElementById('destinos').scrollIntoView({behavior:'smooth'})"><circle cx="310" cy="170" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="322" y="175" font-size="12" font-weight="600" fill="#333">Salta</text></g>
+            <g class="mapa-nodo" onclick="seleccionarDestino(7)"><circle cx="310" cy="170" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="322" y="175" font-size="12" font-weight="600" fill="#333">Salta</text></g>
             <g class="mapa-nodo" onclick="seleccionarDestino(5)"><circle cx="200" cy="330" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="130" y="325" font-size="12" font-weight="600" fill="#333">San Juan</text></g>
             <g class="mapa-nodo" onclick="seleccionarDestino(6)"><circle cx="105" cy="380" r="6" fill="#fff" stroke="#555" stroke-width="2"/><text x="15"  y="385" font-size="12" font-weight="600" fill="#555">Santiago (CL)</text></g>
             <!-- TIM Mendoza -->
