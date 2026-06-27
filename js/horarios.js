@@ -239,6 +239,14 @@ function initAccesibilidad() {
   }
 }
 
+// ─── Abrir los enlaces a otros sitios en una pestaña nueva ─────────────────
+function initEnlacesExternos() {
+  document.querySelectorAll('a[href^="http"]').forEach(a => {
+    a.target = '_blank';            // nueva pestaña
+    a.rel    = 'noopener noreferrer'; // seguridad al abrir sitios externos
+  });
+}
+
 // ─── INIT ───────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderTable(0);
@@ -247,4 +255,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setUpdateTime();
   initSmoothScroll();
   initAccesibilidad();
+  initEnlacesExternos();
 });
