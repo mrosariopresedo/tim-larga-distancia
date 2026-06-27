@@ -459,6 +459,9 @@
       <!-- Mapa SVG -->
       <div class="bg-[#FBFAF7] border border-tim-border rounded-xl relative min-h-[500px] p-6 overflow-hidden">
         <svg viewBox="0 0 600 760" class="w-full h-full block">
+          <!-- Silueta estilizada de Argentina (fondo) -->
+          <path d="M300 150 L352 150 L366 200 L446 196 L420 250 L470 330 L486 432 L470 500 L420 545 L360 605 L300 662 L256 726 L232 690 L246 600 L200 472 L176 360 L186 250 L230 180 Z"
+                fill="#F6ECE4" stroke="#E6D5C8" stroke-width="1.5"/>
           <!-- Rutas nacionales -->
           <line x1="195" y1="380" x2="430" y2="425" stroke="#722F37" stroke-width="1.8" opacity=".6"/>
           <line x1="195" y1="380" x2="360" y2="335" stroke="#722F37" stroke-width="1.8" opacity=".6"/>
@@ -471,14 +474,14 @@
           <line x1="195" y1="380" x2="105" y2="380" stroke="#555" stroke-width="1.8" stroke-dasharray="5 4" opacity=".6"/>
           <!-- Nodos de ciudades -->
           <g font-family="Inter, sans-serif">
-            <g><circle cx="430" cy="425" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="442" y="430" font-size="12" font-weight="600" fill="#333">Buenos Aires</text></g>
-            <g><circle cx="360" cy="335" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="372" y="340" font-size="12" font-weight="600" fill="#333">Córdoba</text></g>
-            <g><circle cx="415" cy="365" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="427" y="370" font-size="12" font-weight="600" fill="#333">Rosario</text></g>
-            <g><circle cx="470" cy="490" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="482" y="495" font-size="12" font-weight="600" fill="#333">Mar del Plata</text></g>
-            <g><circle cx="240" cy="600" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="252" y="605" font-size="12" font-weight="600" fill="#333">Bariloche</text></g>
-            <g><circle cx="310" cy="170" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="322" y="175" font-size="12" font-weight="600" fill="#333">Salta</text></g>
-            <g><circle cx="200" cy="330" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="130" y="325" font-size="12" font-weight="600" fill="#333">San Juan</text></g>
-            <g><circle cx="105" cy="380" r="6" fill="#fff" stroke="#555" stroke-width="2"/><text x="15"  y="385" font-size="12" font-weight="600" fill="#555">Santiago (CL)</text></g>
+            <g class="mapa-nodo" onclick="seleccionarDestino(0)"><circle cx="430" cy="425" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="442" y="430" font-size="12" font-weight="600" fill="#333">Buenos Aires</text></g>
+            <g class="mapa-nodo" onclick="seleccionarDestino(1)"><circle cx="360" cy="335" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="372" y="340" font-size="12" font-weight="600" fill="#333">Córdoba</text></g>
+            <g class="mapa-nodo" onclick="seleccionarDestino(2)"><circle cx="415" cy="365" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="427" y="370" font-size="12" font-weight="600" fill="#333">Rosario</text></g>
+            <g class="mapa-nodo" onclick="seleccionarDestino(3)"><circle cx="470" cy="490" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="482" y="495" font-size="12" font-weight="600" fill="#333">Mar del Plata</text></g>
+            <g class="mapa-nodo" onclick="seleccionarDestino(4)"><circle cx="240" cy="600" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="252" y="605" font-size="12" font-weight="600" fill="#333">Bariloche</text></g>
+            <g class="mapa-nodo" onclick="document.getElementById('destinos').scrollIntoView({behavior:'smooth'})"><circle cx="310" cy="170" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="322" y="175" font-size="12" font-weight="600" fill="#333">Salta</text></g>
+            <g class="mapa-nodo" onclick="seleccionarDestino(5)"><circle cx="200" cy="330" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="130" y="325" font-size="12" font-weight="600" fill="#333">San Juan</text></g>
+            <g class="mapa-nodo" onclick="seleccionarDestino(6)"><circle cx="105" cy="380" r="6" fill="#fff" stroke="#555" stroke-width="2"/><text x="15"  y="385" font-size="12" font-weight="600" fill="#555">Santiago (CL)</text></g>
             <!-- TIM Mendoza -->
             <circle cx="195" cy="380" r="30" fill="#722F37" opacity=".07"/>
             <circle cx="195" cy="380" r="20" fill="#722F37" opacity=".16"/>
@@ -543,7 +546,9 @@
 
     <div class="grid grid-cols-4 gap-4">
       <article class="card p-5 flex gap-3.5 items-center">
-        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">AN</div>
+        <div class="rounded-xl bg-white border border-tim-border flex items-center justify-center shrink-0 p-1.5" style="width:52px;height:52px;">
+          <img src="img/andesmar.png" alt="Logo de Andesmar" class="max-w-full max-h-full object-contain" />
+        </div>
         <div class="min-w-0 flex-1">
           <div class="text-[15px] font-bold mb-0.5">Andesmar</div>
           <div class="text-xs text-tim-muted mb-2">Cobertura nacional · Chile</div>
@@ -551,7 +556,9 @@
         </div>
       </article>
       <article class="card p-5 flex gap-3.5 items-center">
-        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">CH</div>
+        <div class="rounded-xl bg-white border border-tim-border flex items-center justify-center shrink-0 p-1.5" style="width:52px;height:52px;">
+          <img src="img/chevallier.png" alt="Logo de Chevallier" class="max-w-full max-h-full object-contain" />
+        </div>
         <div class="min-w-0 flex-1">
           <div class="text-[15px] font-bold mb-0.5">Chevallier</div>
           <div class="text-xs text-tim-muted mb-2">Buenos Aires · Litoral</div>
@@ -559,7 +566,9 @@
         </div>
       </article>
       <article class="card p-5 flex gap-3.5 items-center">
-        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">CI</div>
+        <div class="rounded-xl bg-white border border-tim-border flex items-center justify-center shrink-0 p-1.5" style="width:52px;height:52px;">
+          <img src="img/cata-internacional.png" alt="Logo de Cata Internacional" class="max-w-full max-h-full object-contain" />
+        </div>
         <div class="min-w-0 flex-1">
           <div class="text-[15px] font-bold mb-0.5">Cata Internacional</div>
           <div class="text-xs text-tim-muted mb-2">Buenos Aires · Lima · Asunción</div>
@@ -567,7 +576,9 @@
         </div>
       </article>
       <article class="card p-5 flex gap-3.5 items-center">
-        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">FB</div>
+        <div class="rounded-xl bg-white border border-tim-border flex items-center justify-center shrink-0 p-1.5" style="width:52px;height:52px;">
+          <img src="img/flecha-bus.png" alt="Logo de Flecha Bus" class="max-w-full max-h-full object-contain" />
+        </div>
         <div class="min-w-0 flex-1">
           <div class="text-[15px] font-bold mb-0.5">Flecha Bus</div>
           <div class="text-xs text-tim-muted mb-2">Buenos Aires · NOA</div>
@@ -575,7 +586,9 @@
         </div>
       </article>
       <article class="card p-5 flex gap-3.5 items-center">
-        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">ER</div>
+        <div class="rounded-xl bg-white border border-tim-border flex items-center justify-center shrink-0 p-1.5" style="width:52px;height:52px;">
+          <img src="img/el-rapido-argentino.png" alt="Logo de El Rápido" class="max-w-full max-h-full object-contain" />
+        </div>
         <div class="min-w-0 flex-1">
           <div class="text-[15px] font-bold mb-0.5">El Rápido</div>
           <div class="text-xs text-tim-muted mb-2">Buenos Aires · Mar del Plata</div>
@@ -583,7 +596,9 @@
         </div>
       </article>
       <article class="card p-5 flex gap-3.5 items-center">
-        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">VB</div>
+        <div class="rounded-xl bg-white border border-tim-border flex items-center justify-center shrink-0 p-1.5" style="width:52px;height:52px;">
+          <img src="img/via-bariloche.avif" alt="Logo de Vía Bariloche" class="max-w-full max-h-full object-contain" />
+        </div>
         <div class="min-w-0 flex-1">
           <div class="text-[15px] font-bold mb-0.5">Vía Bariloche</div>
           <div class="text-xs text-tim-muted mb-2">Patagonia · Bariloche</div>
@@ -591,7 +606,9 @@
         </div>
       </article>
       <article class="card p-5 flex gap-3.5 items-center">
-        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">CN</div>
+        <div class="rounded-xl bg-white border border-tim-border flex items-center justify-center shrink-0 p-1.5" style="width:52px;height:52px;">
+          <img src="img/crucero-del-norte.png" alt="Logo de Crucero del Norte" class="max-w-full max-h-full object-contain" />
+        </div>
         <div class="min-w-0 flex-1">
           <div class="text-[15px] font-bold mb-0.5">Crucero del Norte</div>
           <div class="text-xs text-tim-muted mb-2">NEA · Misiones</div>
@@ -599,7 +616,9 @@
         </div>
       </article>
       <article class="card p-5 flex gap-3.5 items-center">
-        <div class="rounded-xl bg-tim text-white flex items-center justify-center text-base font-bold shrink-0" style="width:52px;height:52px;">EC</div>
+        <div class="rounded-xl bg-white border border-tim-border flex items-center justify-center shrink-0 p-1.5" style="width:52px;height:52px;">
+          <img src="img/el-condor.png" alt="Logo de El Cóndor" class="max-w-full max-h-full object-contain" />
+        </div>
         <div class="min-w-0 flex-1">
           <div class="text-[15px] font-bold mb-0.5">El Cóndor</div>
           <div class="text-xs text-tim-muted mb-2">Córdoba · Rosario</div>

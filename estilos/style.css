@@ -673,6 +673,13 @@ button:focus-visible {
 .mapa-leyenda__line--solid   { background-color: var(--tim); }
 .mapa-leyenda__line--dashed  { background-image: repeating-linear-gradient(90deg, #555 0 4px, transparent 4px 8px); }
 
+/* Nodos de ciudad clickeables: resaltan en terracota al pasar el mouse */
+.mapa-nodo { cursor: pointer; }
+.mapa-nodo circle,
+.mapa-nodo text { transition: fill 0.15s, stroke 0.15s; }
+.mapa-nodo:hover circle { fill: var(--terra); stroke: var(--terra); }
+.mapa-nodo:hover text   { fill: var(--terra); font-weight: 700; }
+
 .mapa-info {
   display: flex;
   flex-direction: column;

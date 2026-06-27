@@ -175,6 +175,17 @@ function initSearch() {
   });
 }
 
+// ─── Seleccionar un destino desde el mapa: activa su pestaña y baja a Horarios
+function seleccionarDestino(idx) {
+  const tabs = document.querySelectorAll('#dest-tabs .tab');
+  tabs.forEach((t, i) => {
+    t.classList.toggle('tab-active', i === idx);
+    t.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+  });
+  renderTable(idx);
+  document.getElementById('horarios').scrollIntoView({ behavior: 'smooth' });
+}
+
 // ─── TIMESTAMP "ÚLTIMA ACTUALIZACIÓN" ──────────────────────────────────────
 function setUpdateTime() {
   const now   = new Date();
