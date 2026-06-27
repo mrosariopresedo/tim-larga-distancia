@@ -85,7 +85,10 @@
     </nav>
     <!-- Accesibilidad: botón + panel desplegable con estética propia (terracota) -->
     <div class="relative ml-auto shrink-0">
-      <button id="acc-btn" class="btn-ghost-light text-sm" aria-expanded="false" aria-controls="acc-panel">Accesibilidad</button>
+      <button id="acc-btn" class="btn-ghost-light text-sm" aria-expanded="false" aria-controls="acc-panel" aria-label="Opciones de accesibilidad">
+        <span class="hidden sm:inline">Accesibilidad</span>
+        <svg class="sm:hidden w-5 h-5" aria-hidden="true"><use href="#i-wheelchair"/></svg>
+      </button>
 
       <div id="acc-panel" role="dialog" aria-label="Opciones de accesibilidad" class="hidden absolute right-0 top-[calc(100%+14px)] w-72 bg-white text-tim-text rounded-xl shadow-[0_20px_50px_rgba(0,0,0,.22)] overflow-hidden z-50">
         <!-- Encabezado terracota: diferencia visual respecto a la página principal -->
@@ -150,21 +153,21 @@
       <!-- Right: stats -->
       <div class="flex flex-col gap-4 pb-3">
         <div class="flex items-baseline gap-4 pb-4 border-b border-white/20">
-          <div class="text-[40px] font-bold tracking-tight min-w-[90px] tnum">8</div>
+          <div class="text-[40px] font-bold tracking-tight min-w-[116px] tnum">8</div>
           <div>
             <div class="text-[15px] font-medium">destinos principales</div>
             <div class="text-[13px] opacity-60 mt-0.5">7 nacionales · 1 internacional</div>
           </div>
         </div>
         <div class="flex items-baseline gap-4 pb-4 border-b border-white/20">
-          <div class="text-[40px] font-bold tracking-tight min-w-[90px] tnum">10</div>
+          <div class="text-[40px] font-bold tracking-tight min-w-[116px] tnum">10</div>
           <div>
             <div class="text-[15px] font-medium">empresas operadoras</div>
             <div class="text-[13px] opacity-60 mt-0.5">Andesmar, Cata, Chevallier…</div>
           </div>
         </div>
         <div class="flex items-baseline gap-4 pb-4 border-b border-white/20">
-          <div class="text-[40px] font-bold tracking-tight min-w-[90px] tnum">+120</div>
+          <div class="text-[40px] font-bold tracking-tight min-w-[116px] tnum">+120</div>
           <div>
             <div class="text-[15px] font-medium">salidas diarias</div>
             <div class="text-[13px] opacity-60 mt-0.5">24/7 - Andenes 1 al 22</div>
@@ -427,6 +430,7 @@
         <span class="inline-flex items-center gap-1.5 text-tim"><svg class="w-5 h-5"><use href="#i-plug"/></svg><span class="text-tim-muted">USB / 220V</span></span>
         <span class="inline-flex items-center gap-1.5 text-tim"><svg class="w-5 h-5"><use href="#i-ac"/></svg><span class="text-tim-muted">Aire acondicionado</span></span>
         <span class="inline-flex items-center gap-1.5 text-tim"><svg class="w-5 h-5"><use href="#i-bed"/></svg><span class="text-tim-muted">Cama / Cama Suite</span></span>
+        <span class="text-tim-muted"><strong class="text-tim-text tnum">+1</strong> = llega al día siguiente</span>
       </div>
       <div id="update-time" class="text-[13px] text-tim-subtle font-mono"></div>
     </div>

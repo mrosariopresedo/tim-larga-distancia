@@ -17,10 +17,10 @@ const DESTINOS_DATA = [
       { emp:'Andesmar',          serv:'Cama Suite',     dep:'18:30', arr:'08:00 +1', dur:'13h 30m', plat:'A04', amen:['wifi','plug','ac','bed'], precio:'$32.400', status:'ok',   statusLabel:'A horario'  },
       { emp:'Chevallier',        serv:'Cama Ejecutivo', dep:'19:15', arr:'09:00 +1', dur:'13h 45m', plat:'A07', amen:['wifi','plug','bed'],       precio:'$28.900', status:'ok',   statusLabel:'A horario'  },
       { emp:'Cata Intl.',        serv:'Semi-Cama',      dep:'20:00', arr:'10:30 +1', dur:'14h 30m', plat:'B02', amen:['wifi','plug'],             precio:'$22.500', status:'ok',   statusLabel:'A horario'  },
-      { emp:'Flecha Bus',        serv:'Cama',           dep:'20:45', arr:'10:15 +1', dur:'13h 30m', plat:'A11', amen:['wifi','plug','bed'],       precio:'$26.800', status:'warn', statusLabel:'2 lugares'  },
+      { emp:'Flecha Bus',        serv:'Cama',           dep:'20:45', arr:'10:15 +1', dur:'13h 30m', plat:'A11', amen:['wifi','plug','bed'],       precio:'$26.800', status:'warn', statusLabel:'Últimos lugares'  },
       { emp:'El Rápido',         serv:'Semi-Cama',      dep:'21:30', arr:'12:00 +1', dur:'14h 30m', plat:'B05', amen:['wifi','ac'],               precio:'$23.200', status:'ok',   statusLabel:'A horario'  },
       { emp:'Vía Bariloche',     serv:'Cama',           dep:'22:00', arr:'11:30 +1', dur:'13h 30m', plat:'A09', amen:['wifi','plug','bed'],       precio:'$27.600', status:'ok',   statusLabel:'A horario'  },
-      { emp:'Crucero del Norte', serv:'Cama Suite',     dep:'22:30', arr:'12:00 +1', dur:'13h 30m', plat:'A02', amen:['wifi','plug','ac','bed'],  precio:'$31.200', status:'warn', statusLabel:'Últimos 4'  },
+      { emp:'Crucero del Norte', serv:'Cama Suite',     dep:'22:30', arr:'12:00 +1', dur:'13h 30m', plat:'A02', amen:['wifi','plug','ac','bed'],  precio:'$31.200', status:'warn', statusLabel:'Últimos lugares'  },
     ]
   },
 
@@ -54,7 +54,7 @@ const DESTINOS_DATA = [
     subtitle: 'Salidas hacia Mar del Plata. 1444 km, servicio nocturno con llegada a la mañana.',
     filas: [
       { emp:'Vía Bariloche', serv:'Cama Suite', dep:'19:00', arr:'13:00 +1', dur:'18h 00m', plat:'A09', amen:['wifi','plug','ac','bed'], precio:'$34.600', status:'ok',   statusLabel:'A horario' },
-      { emp:'El Cóndor',     serv:'Cama',       dep:'21:00', arr:'15:00 +1', dur:'18h 00m', plat:'B09', amen:['wifi','plug','bed'],      precio:'$28.400', status:'warn', statusLabel:'Últimos 6' },
+      { emp:'El Cóndor',     serv:'Cama',       dep:'21:00', arr:'15:00 +1', dur:'18h 00m', plat:'B09', amen:['wifi','plug','bed'],      precio:'$28.400', status:'warn', statusLabel:'Últimos lugares' },
     ]
   },
 
