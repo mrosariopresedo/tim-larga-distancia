@@ -31,8 +31,8 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--tim-text);
   background-color: var(--white);
-  min-width: 1280px;
   margin: 0;
+  overflow-x: clip; /* evita scroll horizontal accidental sin romper el navbar sticky */
 }
 
 a {
@@ -64,6 +64,10 @@ button:focus-visible {
   margin-inline: auto;
   padding-inline: 80px;
 }
+
+/* Padding lateral más chico en pantallas medianas y móviles */
+@media (max-width: 1024px) { .container-tim { padding-inline: 40px; } }
+@media (max-width: 600px)  { .container-tim { padding-inline: 18px; } }
 
 /* ── Botones ─────────────────────────────────────────────── */
 .btn-primary {

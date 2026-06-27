@@ -70,12 +70,12 @@
      NAVBAR
 ══════════════════════════════════════════════════ -->
 <header class="bg-tim text-white sticky top-0 z-50 shadow-md">
-  <div class="container-tim flex items-center h-[76px] gap-10">
-    <a href="https://mrosariopresedo.github.io/nexo-studio-tim/" class="flex items-baseline gap-3 no-underline text-white">
+  <div class="container-tim flex items-center h-[76px] gap-4 md:gap-10">
+    <a href="https://mrosariopresedo.github.io/nexo-studio-tim/" class="flex items-baseline gap-3 no-underline text-white shrink-0">
       <span class="font-extrabold text-[28px] tracking-tight">TIM</span>
-      <span class="text-xs opacity-75">Terminal Inteligente de Mendoza</span>
+      <span class="text-xs opacity-75 hidden sm:inline">Terminal Inteligente de Mendoza</span>
     </a>
-    <nav class="flex gap-7 ml-6 text-sm font-semibold">
+    <nav class="flex gap-5 md:gap-7 ml-2 md:ml-6 text-sm font-semibold overflow-x-auto whitespace-nowrap min-w-0">
       <a href="index.html" class="border-b-2 border-white pb-0.5">Larga Distancia</a>
       <a href="https://luligavilanes.github.io/altamonta-a/" class="border-b-2 border-transparent pb-0.5 opacity-80 hover:opacity-100 transition-opacity">Alta Montaña</a>
       <a href="https://valmartins222.github.io/Ruta-del-vino/" class="border-b-2 border-transparent pb-0.5 opacity-80 hover:opacity-100 transition-opacity">Ruta del Vino</a>
@@ -127,7 +127,7 @@
       <span class="font-medium">Larga Distancia</span>
     </nav>
 
-    <div class="grid grid-cols-[1.4fr_1fr] gap-20 items-end">
+    <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-20 items-end">
 
       <!-- Left: título + badge -->
       <div>
@@ -137,7 +137,7 @@
           </span>
           Servicio Nacional e Internacional
         </span>
-        <h1 class="text-[72px] font-extrabold tracking-[-0.03em] leading-[.98] m-0 mb-6">Larga<br>Distancia</h1>
+        <h1 class="text-[44px] sm:text-[60px] lg:text-[72px] font-extrabold tracking-[-0.03em] leading-[.98] m-0 mb-6">Larga<br>Distancia</h1>
         <p class="text-xl leading-relaxed opacity-90 max-w-[580px] m-0">
           Micros desde TIM hacia <strong class="font-semibold">Buenos Aires, Córdoba, Rosario</strong> y todo el país.
           Conexión internacional a Santiago de Chile, Lima y Asunción.
@@ -171,7 +171,7 @@
     </div>
 
     <!-- Buscador -->
-    <form id="search-form" class="bg-white text-tim-text rounded-xl p-2.5 flex items-stretch gap-2 mt-12 shadow-[0_20px_50px_rgba(0,0,0,.18)]">
+    <form id="search-form" class="bg-white text-tim-text rounded-xl p-2.5 flex flex-col md:flex-row items-stretch gap-2 mt-12 shadow-[0_20px_50px_rgba(0,0,0,.18)]">
       <label class="flex-[2] flex items-center gap-3 px-4 py-2.5 min-w-0 cursor-pointer">
         <span class="icon-pill w-7 h-7 shrink-0"><svg class="w-5 h-5"><use href="#i-pin"/></svg></span>
         <span class="min-w-0">
@@ -225,7 +225,7 @@
       <a href="#" class="text-sm font-semibold text-tim whitespace-nowrap hover:text-tim-dark">Ver los 18 destinos →</a>
     </div>
 
-    <div class="grid grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
       <!-- Buenos Aires · DESTACADO -->
       <article class="card p-6 flex flex-col gap-3.5 relative overflow-hidden border-tim bg-tim-light shadow-[0_8px_32px_rgba(114,47,55,.08)]">
@@ -405,8 +405,8 @@
     </div>
 
     <!-- Tabla dinámica -->
-    <div class="card overflow-hidden">
-      <table class="w-full text-sm border-collapse">
+    <div class="card overflow-x-auto">
+      <table class="w-full min-w-[820px] text-sm border-collapse">
         <thead>
           <tr class="bg-gray-50 border-b border-tim-border text-left text-[11px] font-bold tracking-[.08em] uppercase text-tim-subtle">
             <th class="px-3.5 py-4">Empresa</th>
@@ -454,7 +454,7 @@
       <p class="section-sub">TIM conecta el centro-oeste argentino con todo el país. Cada línea es una ruta directa desde nuestra terminal.</p>
     </div>
 
-    <div class="grid grid-cols-[1.5fr_1fr] gap-8 items-stretch">
+    <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8 items-stretch">
 
       <!-- Mapa SVG -->
       <div class="bg-[#FBFAF7] border border-tim-border rounded-xl relative min-h-[500px] p-6 overflow-hidden">
@@ -544,7 +544,7 @@
       <p class="section-sub">Cada empresa tiene plataforma fija asignada para que sepas exactamente desde dónde sale tu micro.</p>
     </div>
 
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <article class="card p-5 flex gap-3.5 items-center">
         <div class="rounded-xl bg-white border border-tim-border flex items-center justify-center shrink-0 p-1.5" style="width:52px;height:52px;">
           <img src="img/andesmar.png" alt="Logo de Andesmar" class="max-w-full max-h-full object-contain" />
@@ -642,7 +642,7 @@
       <p class="section-sub">TIM cumple con WCAG 2.1 AA y el Decreto 914/97 de Argentina. Si necesitás asistencia, podés solicitarla al reservar o llamando 24/7 al 0261 476-5875.</p>
     </div>
 
-    <div class="grid grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
       <div class="bg-tim-bgalt border border-tim-border rounded-xl p-8 flex flex-col gap-4">
         <div class="w-16 h-16 rounded-2xl bg-white border border-tim-border flex items-center justify-center text-tim"><svg class="w-7 h-7"><use href="#i-wheelchair"/></svg></div>
@@ -721,7 +721,7 @@
 ══════════════════════════════════════════════════ -->
 <footer class="bg-tim-text text-white pt-16 pb-8">
   <div class="container-tim">
-    <div class="grid grid-cols-[2fr_1fr_1fr_1fr] gap-12 pb-12 border-b border-white/10">
+    <div class="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-8 md:gap-12 pb-12 border-b border-white/10">
       <div>
         <div class="text-[32px] font-extrabold tracking-tight">TIM</div>
         <div class="text-[13px] opacity-70 mt-1.5">Terminal Inteligente de Mendoza</div>
