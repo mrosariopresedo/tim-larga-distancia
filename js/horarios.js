@@ -12,7 +12,7 @@ const DESTINOS_DATA = [
   // 0 - Buenos Aires
   {
     label: 'Buenos Aires',
-    subtitle: 'Tabla en tiempo real de salidas hacia Buenos Aires. Cambiá el destino para ver otras rutas.',
+    subtitle: 'Salidas de hoy hacia Buenos Aires (horarios de referencia). Cambiá el destino para ver otras rutas.',
     filas: [
       { emp:'Andesmar',          serv:'Cama Suite',     dep:'18:30', arr:'08:00 +1', dur:'13h 30m', plat:'A04', amen:['wifi','plug','ac','bed'], precio:'$32.400', status:'ok',   statusLabel:'A horario'  },
       { emp:'Chevallier',        serv:'Cama Ejecutivo', dep:'19:15', arr:'09:00 +1', dur:'13h 45m', plat:'A07', amen:['wifi','plug','bed'],       precio:'$28.900', status:'ok',   statusLabel:'A horario'  },
@@ -281,6 +281,30 @@ function initVerHorarios() {
   });
 }
 
+// ─── Mapa accesible por teclado (los nodos se recorren con Tab y se activan
+//     con Enter o barra espaciadora, igual que con el mouse) ─────────────────
+function initMapaTeclado() {
+  document.querySelectorAll('.mapa-nodo').forEach(nodo => {
+    nodo.setAttribute('tabindex', '0');
+    nodo.setAttribute('role', 'button');
+    const texto = nodo.querySelector('text');
+    if (texto) nodo.setAttribute('aria-label', texto.textContent.trim());
+    nodo.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        nodo.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      }
+    });
+  });
+}
+
+// ─── Fecha mínima = hoy (no se pueden elegir fechas pasadas) ────────────────
+function initFechaMinima() {
+  const hoy = new Date().toISOString().split('T')[0];
+  const f = document.getElementById('search-fecha');
+  if (f) f.min = hoy;
+}
+
 // ─── INIT ───────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderTable(0);
@@ -288,6 +312,8 @@ document.addEventListener('DOMContentLoaded', () => {
   cargarBuscadorDestinos();
   initSearch();
   initVerHorarios();
+  initMapaTeclado();
+  initFechaMinima();
   setUpdateTime();
   initSmoothScroll();
   initAccesibilidad();

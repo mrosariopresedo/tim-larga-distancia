@@ -192,19 +192,6 @@
           <input id="search-fecha" type="date" class="block text-sm font-bold text-tim-text bg-transparent outline-none w-full" />
         </span>
       </label>
-      <span class="w-px bg-tim-border self-stretch my-1"></span>
-      <label class="flex-[1.2] flex items-center gap-3 px-4 py-2.5 min-w-0 cursor-pointer">
-        <span class="icon-pill w-7 h-7 shrink-0"><svg class="w-5 h-5"><use href="#i-bus"/></svg></span>
-        <span class="min-w-0">
-          <span class="block text-[10px] text-tim-subtle uppercase tracking-[.08em] font-bold mb-0.5">Tipo de servicio</span>
-          <select id="search-tipo" class="block text-sm font-bold text-tim-text bg-transparent outline-none w-full cursor-pointer">
-            <option>Todos los servicios</option>
-            <option>Cama Suite</option>
-            <option>Cama</option>
-            <option>Semi-Cama</option>
-          </select>
-        </span>
-      </label>
       <button type="submit" class="btn-primary px-8 flex items-center gap-2.5 text-base">
         <svg class="w-[18px] h-[18px]"><use href="#i-search"/></svg>
         Buscar horarios
@@ -395,7 +382,7 @@
     <div class="mb-12">
       <div class="eyebrow">02 · Horarios y frecuencias</div>
       <h2 class="section-title">Salidas de hoy</h2>
-      <p class="section-sub" id="tabla-subtitle">Tabla en tiempo real de salidas hacia Buenos Aires. Cambiá el destino para ver otras rutas.</p>
+      <p class="section-sub" id="tabla-subtitle">Salidas de hoy hacia Buenos Aires (horarios de referencia). Cambiá el destino para ver otras rutas.</p>
     </div>
 
     <!-- Tabs -->
@@ -713,8 +700,8 @@
         <div class="text-[22px] font-semibold tracking-tight">Coordinala antes de viajar - sin costo adicional.</div>
       </div>
       <div class="flex gap-3">
-        <button class="bg-white text-tim font-bold rounded-lg px-6 py-[13px] min-h-[44px] hover:bg-tim-light transition-colors">Solicitar asistencia →</button>
-        <button class="btn-ghost-light text-sm">Llamar 0261 476-5875</button>
+        <a href="#mapa" class="inline-flex items-center bg-white text-tim font-bold rounded-lg px-6 py-[13px] min-h-[44px] hover:bg-tim-light transition-colors no-underline">Solicitar asistencia →</a>
+        <a href="tel:+542614765875" class="btn-ghost-light text-sm no-underline">Llamar 0261 476-5875</a>
       </div>
     </div>
 
@@ -727,31 +714,33 @@
 <!-- ══════════════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════════════ -->
-<footer class="bg-tim-text text-white pt-16 pb-8">
+<footer class="bg-tim-text text-white pt-16 pb-8 border-t-4 border-[#C2410C]">
   <div class="container-tim">
     <div class="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-8 md:gap-12 pb-12 border-b border-white/10">
       <div>
-        <div class="text-[32px] font-extrabold tracking-tight">TIM</div>
-        <div class="text-[13px] opacity-70 mt-1.5">Terminal Inteligente de Mendoza</div>
+        <div class="flex items-baseline gap-2.5">
+          <span class="text-[32px] font-extrabold tracking-tight">TIM</span>
+          <span class="text-[12px] font-bold uppercase tracking-[.12em] text-[#E8775A]">Larga Distancia</span>
+        </div>
+        <div class="text-[13px] opacity-70 mt-1.5">Servicio nacional e internacional desde Mendoza</div>
         <address class="text-sm not-italic opacity-85 mt-5 leading-relaxed max-w-[280px]">
-          Juan B. Alberdi s/n, M5519<br>
-          Guaymallén, Mendoza, Argentina<br>
+          Terminal Inteligente de Mendoza<br>
+          Juan B. Alberdi s/n, Guaymallén<br>
           <span class="opacity-60">Atención 24/7 · 0261 476-5875</span>
         </address>
       </div>
       <div>
-        <div class="text-[13px] font-bold tracking-[.08em] uppercase mb-4">Navegación</div>
+        <div class="text-[13px] font-bold tracking-[.08em] uppercase mb-4 text-[#E8775A]">Navegación</div>
         <ul class="flex flex-col gap-2.5 text-sm opacity-80">
-          <li><a href="https://mrosariopresedo.github.io/nexo-studio-tim/"  class="hover:opacity-100 transition-opacity">Inicio</a></li>
-          <li><a href="#destinos"   class="hover:opacity-100 transition-opacity">Servicios</a></li>
+          <li><a href="https://mrosariopresedo.github.io/nexo-studio-tim/" class="hover:opacity-100 transition-opacity">Inicio</a></li>
+          <li><a href="#destinos"   class="hover:opacity-100 transition-opacity">Destinos</a></li>
+          <li><a href="#horarios"   class="hover:opacity-100 transition-opacity">Horarios</a></li>
           <li><a href="#accesibilidad" class="hover:opacity-100 transition-opacity">Accesibilidad</a></li>
-          <li><a href="#mapa"           class="hover:opacity-100 transition-opacity">Contacto</a></li>
         </ul>
       </div>
       <div>
-        <div class="text-[13px] font-bold tracking-[.08em] uppercase mb-4">Servicios</div>
+        <div class="text-[13px] font-bold tracking-[.08em] uppercase mb-4 text-[#E8775A]">Otras líneas TIM</div>
         <ul class="flex flex-col gap-2.5 text-sm opacity-80">
-          <li><a href="index.html" class="hover:opacity-100 transition-opacity font-semibold text-white/95">Larga Distancia</a></li>
           <li><a href="https://luligavilanes.github.io/altamonta-a/" class="hover:opacity-100 transition-opacity">Alta Montaña</a></li>
           <li><a href="https://valmartins222.github.io/Ruta-del-vino/" class="hover:opacity-100 transition-opacity">Ruta del Vino</a></li>
           <li><a href="https://moraraimondo-cyber.github.io/Metrotranvia/" class="hover:opacity-100 transition-opacity">Aeropuerto</a></li>
@@ -759,17 +748,16 @@
         </ul>
       </div>
       <div>
-        <div class="text-[13px] font-bold tracking-[.08em] uppercase mb-4">Información</div>
+        <div class="text-[13px] font-bold tracking-[.08em] uppercase mb-4 text-[#E8775A]">Información</div>
         <ul class="flex flex-col gap-2.5 text-sm opacity-80">
-          <li><a href="#mapa" class="hover:opacity-100 transition-opacity">Llegar a la terminal</a></li>
-          <li><a href="#horarios"     class="hover:opacity-100 transition-opacity">Tarifas</a></li>
-          <li><a href="https://mrosariopresedo.github.io/nexo-studio-tim/"     class="hover:opacity-100 transition-opacity">Política de privacidad</a></li>
-          <li><a href="https://mrosariopresedo.github.io/nexo-studio-tim/"     class="hover:opacity-100 transition-opacity">Términos</a></li>
+          <li><a href="#mapa" class="hover:opacity-100 transition-opacity">Cómo llegar</a></li>
+          <li><a href="#horarios" class="hover:opacity-100 transition-opacity">Horarios y tarifas</a></li>
+          <li><a href="tel:+542614765875" class="hover:opacity-100 transition-opacity">Contacto</a></li>
         </ul>
       </div>
     </div>
-    <div class="flex justify-between items-center mt-6 text-[13px] opacity-65">
-      <div>© 2026 Nexo Studio · Terminal Inteligente de Mendoza</div>
+    <div class="flex justify-between items-center mt-6 text-[13px] opacity-65 flex-wrap gap-3">
+      <div>© 2026 Nexo Studio · TIM Larga Distancia</div>
       <div>Hecho en Mendoza, Argentina</div>
     </div>
   </div>
