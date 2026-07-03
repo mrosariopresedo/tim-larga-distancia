@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<link rel="icon" href="favicon.svg" type="image/svg+xml" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Página de la línea Larga Distancia (repo propio, se publica sola en GitHub Pages).
+     Comparte la identidad de TIM (bordó) y suma su color: terracota. -->
+<meta charset="UTF-8" /><!-- ñ y tildes -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml" /><!-- ícono de la pestaña -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- responsive -->
 <title>TIM · Larga Distancia</title>
-<meta name="description" content="Horarios, destinos, empresas y precios de los micros de larga distancia desde la Terminal Inteligente de Mendoza (TIM): Buenos Aires, Córdoba, Bariloche, Santiago de Chile y todo el país." />
+<meta name="description" content="Horarios, destinos, empresas y precios de los micros de larga distancia desde la Terminal Inteligente de Mendoza (TIM): Buenos Aires, Córdoba, Bariloche, Santiago de Chile y todo el país." /><!-- SEO -->
 
+<!-- Fuente Inter (Google Fonts) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+<!-- Tailwind por CDN + config con los colores 'tim' (bordó) y 'terra' (terracota) -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="js/tailwind.config.js"></script>
 
+<!-- CSS propio: base, botones, tabs, tabla, mapa y panel de accesibilidad -->
 <link rel="stylesheet" href="estilos/style.css" />
 </head>
 <body>
@@ -72,6 +77,9 @@
 
         <!-- Cada opción es un botón grande que se ilumina en terracota al activarse -->
         <div class="p-3 flex flex-col gap-2">
+          <!-- Cada opción es un botón con aria-pressed (activado/desactivado).
+               horarios.js alterna la clase en el <body> y recuerda la elección en
+               localStorage, así se mantiene en la próxima visita. -->
           <button id="toggle-contrast" type="button" aria-pressed="false" class="acc-option">
             <span class="acc-option__name">Alto contraste</span>
             <span class="acc-option__desc">Fondo negro · texto amarillo</span>
@@ -362,6 +370,10 @@
     </div>
 
     <!-- Tabs -->
+    <!-- Pestañas de destino (patrón de tabs accesible): el contenedor lleva
+         role="tablist" y cada botón role="tab" + aria-selected (cuál está activa).
+         data-dest es el índice del destino en los datos de horarios.js; al hacer clic,
+         horarios.js marca la pestaña activa y vuelve a dibujar la tabla de abajo. -->
     <div role="tablist" aria-label="Destinos" class="flex gap-2 mb-7 flex-wrap" id="dest-tabs">
       <button role="tab" aria-selected="true"  data-dest="0" class="tab tab-active">Buenos Aires</button>
       <button role="tab" aria-selected="false" data-dest="1" class="tab">Córdoba</button>
@@ -390,6 +402,9 @@
             <th class="px-3.5 py-4"></th>
           </tr>
         </thead>
+        <!-- El <tbody> arranca vacío: horarios.js arma las filas (empresa, servicio,
+             salida, llegada, plataforma, precio, estado…) según el destino elegido.
+             Es un <table> nativo, que ya es accesible sin ARIA extra. -->
         <tbody id="schedule-tbody" class="[&>tr]:border-t [&>tr]:border-tim-border [&>tr:first-child]:border-t-0">
           <!-- Generado por JS -->
         </tbody>
@@ -444,6 +459,10 @@
           <line x1="195" y1="380" x2="105" y2="380" stroke="#555" stroke-width="1.8" stroke-dasharray="5 4" opacity=".6"/>
           <!-- Nodos de ciudades -->
           <g font-family="Inter, sans-serif">
+            <!-- Cada ciudad del mapa es un <g class="mapa-nodo"> con onclick que abre
+                 su destino en la tabla. horarios.js (initMapaTeclado) además les agrega
+                 tabindex, role="button" y activación con Enter/Espacio, para que el mapa
+                 también se pueda recorrer por teclado, no solo con el mouse. -->
             <g class="mapa-nodo" onclick="seleccionarDestino(0)"><circle cx="430" cy="425" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="442" y="430" font-size="12" font-weight="600" fill="#333">Buenos Aires</text></g>
             <g class="mapa-nodo" onclick="seleccionarDestino(1)"><circle cx="360" cy="335" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="372" y="340" font-size="12" font-weight="600" fill="#333">Córdoba</text></g>
             <g class="mapa-nodo" onclick="seleccionarDestino(2)"><circle cx="415" cy="365" r="6" fill="#fff" stroke="#722F37" stroke-width="2"/><text x="427" y="370" font-size="12" font-weight="600" fill="#333">Rosario</text></g>
