@@ -28,7 +28,6 @@ tailwind.config = {
         },
       },
       fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-      maxWidth:   { container: '1280px' },
     },
   },
 };
